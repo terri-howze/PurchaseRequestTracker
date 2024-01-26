@@ -2,9 +2,16 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
+  let pokemonres = [];
+  const [count, setCount] = useState('0')
+
+  // axios.get(`https://pokeapi.co/api/v2/berry/1`)
+  //   .then(setCount(pokemonres))
+  //   .then(console.log(count))
+  
 
   return (
     <>
@@ -18,8 +25,10 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => axios.get(`https://pokeapi.co/api/v2/berry/1`)
+                               .then(res => {
+                               pokemonres = res.data})}>
+          count is {pokemonres}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
