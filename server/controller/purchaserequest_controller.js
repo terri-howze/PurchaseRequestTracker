@@ -12,8 +12,11 @@ const purchaseRequest = async(req,res) => {
             department: req.body.department
         })
         console.log(process.env.ATLAS_URI)
-        await mongoose.connect(process.env.ATLAS_URI);
-        console.log("connected")
+        await mongoose.connect(process.env.ATLAS_URI).then(() => {
+            console.log("Connected to Database");
+        }).catch((err) => {
+            console.log("Not Connected to Database ERROR! ", err);
+        });
         await newPR.save();
         await mongoose.connection.close();
     }catch(err){

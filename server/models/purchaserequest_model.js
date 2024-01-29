@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 
 const AddPurchaseRequest = new Schema({
     prNumber: {type: Number, require:true, unique:true},
-    department : Number
+    department : {type: Number, require:true}
 })
 
 const addPurchaseRequest = mongoose.model('addPurchaseRequest', AddPurchaseRequest)
