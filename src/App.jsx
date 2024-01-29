@@ -5,38 +5,50 @@ import './App.css'
 import axios from 'axios'
 
 function App() {
-  let pokemonres = [];
-  const [count, setCount] = useState('0')
 
-  // axios.get(`https://pokeapi.co/api/v2/berry/1`)
-  //   .then(setCount(pokemonres))
-  //   .then(console.log(count))
+  const [prNumber, setprNumber] = useState('0')
+  const [department, setdepartment] = useState('0')
+//Functions to handle submitting PR
+
+  // Function to change prNumber state to new prNumber input
+  const onNewPR = e =>{
+    setprNumber(e.target.value);
+  };
+ // Function to change department state to new department input
+  const onNewDepartment = e =>{
+    setdepartment(e.target.value);
+  };
+
+  // Function to handle submittal of Pr and save it
+  const handleSubmit = e => {
+    e.preventDefault();
+    const data = {
+       prNumber,
+       department
+    };
+
+    axios.post('http://localhost:8080/PR/addPR', data)
+
+  }
+
+//End of functions to handle submitting pr
+
   
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => axios.get(`https://pokeapi.co/api/v2/berry/1`)
-                               .then(res => {
-                               pokemonres = res.data})}>
-          count is {pokemonres}
-        </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Form Submittal
         </p>
+      <form onSubmit={handleSubmit}>
+        <label for ="PR Number">Pr Number</label>
+        <input type="text" onChange = {onNewPR}></input>
+        <label for ="Department">Department</label>
+        <input type="text" onChange = {onNewDepartment}></input> 
+      </form>
+      <button onClick={handleSubmit}>Submit</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
