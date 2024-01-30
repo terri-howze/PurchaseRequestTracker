@@ -3,7 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
-import Navbar from './Navbar'
+import Navbar from './components/Navbar'
+import Right_side_bar from './components/Right_side_bar'
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
 
   return (
     <>
-    <Navbar />
+    <Right_side_bar />
       <div>
         <p>
           Form Submittal

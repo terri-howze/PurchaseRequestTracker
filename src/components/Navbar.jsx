@@ -7,7 +7,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
-import './Navbar.css'
+import '../css/Navbar.css'
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
