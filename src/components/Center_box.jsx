@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import axios from 'axios'
 import '../css/Center_box.css'
+import { lazy } from 'react'
+import { useStateStore } from '../Store'
+import Pr_Create from './Pr_Create'
 
 export default function Center_box() {
 const [prNumber, setprNumber] = useState('0')
 const [department, setdepartment] = useState('0')
+const [cardType, setCardType] = useState("")
+const [purchaseRequestAmount, setAmount] = useState('0')
+const [cardNumber, setCardNumber] = useState('0')
+const mountSatte = useStateStore((state) => state.isMounted)
 //Functions to handle submitting PR
 
 // Function to change prNumber state to new prNumber input
@@ -30,21 +37,19 @@ const handleSubmit = e => {
 
 //End of functions to handle submitting pr
 
-
+  const testZustand = () => {
+    //const mountSatte = 'John'
+    console.log(mountSatte);
+  }
   return (
     <>
-      <div className='center_box_flex'>
-        <p>
-          Form Submittal
-        </p>
-      <form onSubmit={handleSubmit}>
-        <label for ="PR Number">Pr Number</label>
-        <input type="text" onChange = {onNewPR}></input>
-        <label for ="Department">Department</label>
-        <input type="text" onChange = {onNewDepartment}></input> 
-      </form>
-      <button onClick={handleSubmit}>Submit</button>
-      </div>
+    <div>
+    {mountSatte ? (
+        <Pr_Create />
+      ) : (
+        <h1>Please sign up.</h1>
+      )}
+    </div>
     </>
   )
 }
