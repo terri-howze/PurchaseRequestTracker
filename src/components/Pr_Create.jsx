@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 // import { FormControl } from '@mui/material'
-// import Select from '@mui/material'
+import { Select } from '@mui/material'
+import { MenuItem } from '@mui/material'
 import '../css/Pr_Create.css'
+import { InputLabel } from '@mui/material'
 import { useStateStore } from '../Store'
 import axios from 'axios'
 import { DatePicker } from '@mui/x-date-pickers'
@@ -49,6 +51,7 @@ function Pr_Create() {
   
     // Function to handle submittal of Pr and save it
     const handleSubmit = async(e) => {
+      const purchasedate = format(datePurchaseRequest, "yyyy=MM-dd")
     const data = {
        department,
        cardType,
@@ -57,7 +60,7 @@ function Pr_Create() {
        datePurchaseRequest
         };
     await 
-    console.log(datePurchaseRequest.$d)
+    console.log(purchasedate)
     //axios.post('http://localhost:8080/PR/addPR', data)
     falseMount()
     }
@@ -70,14 +73,24 @@ function Pr_Create() {
       <form onSubmit={handleSubmit}>
         <label for ="PR Number">Pr Number</label>
         <input type="text" onChange = {onNewPR}></input>
-        <label for ="Department">Department</label>
-        <input type="text" onChange = {onNewDepartment}></input>
+        <InputLabel id="department-label">Department</InputLabel>
+        <Select
+          id="department-label"
+          defaultValue=''
+          value={department}
+          label="Department"
+          onChange={onNewDepartment}
+        >
+          <MenuItem value={20}>20</MenuItem>
+          <MenuItem value={50}>50</MenuItem>
+          <MenuItem value={51}>51</MenuItem>
+          <MenuItem value={52}>52</MenuItem>
+          <MenuItem value={53}>53</MenuItem>
+        </Select>
         <label for ="Department">Purchase Request Amount</label>
         <input type="text" onChange = {onNewPurchaseRequestAmount}></input>
         <label for ="Department">Card Number</label>
         <input type="text" onChange = {onNewCardNumber}></input> 
-        <label for ="Department">Date of Purchase</label>
-        <input type="text" onChange = {onNewPurchaseRequestAmount}></input> 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
         onChange={(newValue) => {
