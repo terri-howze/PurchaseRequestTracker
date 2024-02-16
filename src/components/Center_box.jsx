@@ -43,7 +43,7 @@ const handleSubmit = e => {
   }
   return (
     <>
-    <div>
+    <div className='center_box_flex'>
     {mountSatte ? (
         <Pr_Create />
       ) : (

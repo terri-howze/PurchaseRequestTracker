@@ -3,15 +3,20 @@ import 'dotenv/config'
 import mongoose from "mongoose"
 import addPurchaseRequest from '../models/purchaserequest_model.js'
 
+// const makePRNumber = () =>{
+//     const date = new Date();
+// }
 
 const purchaseRequest = async(req,res) => {
     try{
-        console.log("made it")
+
         const newPR = new addPurchaseRequest({
             prNumber: req.body.prNumber,
-            department: req.body.department
+            department: req.body.department,
+            cardType: req.body.cardType,
+            purchaseRequestAmount: req.body.purchaseRequestAmount,
+            cardNumber: req.body.cardNumber
         })
-        console.log(process.env.ATLAS_URI)
         await mongoose.connect(process.env.ATLAS_URI).then(() => {
             console.log("Connected to Database");
         }).catch((err) => {
