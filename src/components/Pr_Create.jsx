@@ -16,20 +16,20 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 function Pr_Create() {
     const d = new Date();
     //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
-    const [prNumber, setprNumber] = useState('0')
+    //const [prNumber, setprNumber] = useState()
     const [department, setdepartment] = useState('0')
     const cardType = "Amex";
     const [purchaseRequestAmount, setAmount] = useState('0')
     const [cardNumber, setCardNumber] = useState('0')
-    const [datePurchaseRequest, setDate] = useState(d)
+    const [date, setDate] = useState("")
     const mountSatte = useStateStore((state) => state.isMounted)
     const falseMount = useStateStore((state) => state.flagFalse)
     //Functions to handle submitting PR
 
     // Function to change prNumber state to new prNumber input
-    const onNewPR = e =>{
-      setprNumber(e.target.value);
-    };
+    // const onNewPR = e =>{
+    //   setprNumber(e.target.value);
+    // };
     // Function to change department state to new department input
     const onNewDepartment = e =>{
       setdepartment(e.target.value);
@@ -42,7 +42,6 @@ function Pr_Create() {
 
     const onNewDatePurchase = e => {
       setDate(e.target.value);
-      console.log(datePurchaseRequest)
     }
 
     //Function to change purchaase request amount to new input state
@@ -52,18 +51,28 @@ function Pr_Create() {
   
     // Function to handle submittal of Pr and save it
     const handleSubmit = async(e) => {
-      const purchasedate = format(datePurchaseRequest, "yyyy=MM-dd")
-    const data = {
-       department,
-       cardType,
-       purchaseRequestAmount,
-       cardNumber,
-       datePurchaseRequest
-        };
-    await 
-    console.log(purchasedate)
+      const prNumber = makePrNumber()
+      const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
+      setDate(date)
+      const data = {
+        prNumber,
+        department,
+        cardType,
+        purchaseRequestAmount,
+        cardNumber,
+        datePurchaseRequest
+          };
+    //await 
+    console.log(data)
     //axios.post('http://localhost:8080/PR/addPR', data)
     falseMount()
+    }
+
+    //Function to combine enterered values to make a prNumber accoring to Sherpa's prestanding format
+    const makePrNumber = () => {
+      const dayofMonth = dayjs(date).format('MMDD')
+      const prString = (date.$y + "." + department + "." + dayofMonth)
+      return prString
     }
 
     return (
@@ -72,8 +81,6 @@ function Pr_Create() {
           Form Submittal
         </p>
       <form onSubmit={handleSubmit}>
-        <label for ="PR Number">Pr Number</label>
-        <input type="text" onChange = {onNewPR}></input>
         <InputLabel id="department-label">Department</InputLabel>
         <Select
           id="department-label"

@@ -15,7 +15,8 @@ const purchaseRequest = async(req,res) => {
             department: req.body.department,
             cardType: req.body.cardType,
             purchaseRequestAmount: req.body.purchaseRequestAmount,
-            cardNumber: req.body.cardNumber
+            cardNumber: req.body.cardNumber,
+            datePurchaseRequest: req.body.datePurchaseRequest
         })
         await mongoose.connect(process.env.ATLAS_URI).then(() => {
             console.log("Connected to Database");
