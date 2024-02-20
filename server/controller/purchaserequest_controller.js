@@ -2,16 +2,17 @@ import axios from "axios"
 import 'dotenv/config'
 import mongoose from "mongoose"
 import addPurchaseRequest from '../models/purchaserequest_model.js'
-
-// const makePRNumber = () =>{
-//     const date = new Date();
-// }
+import dayjs from 'dayjs'
 
 const purchaseRequest = async(req,res) => {
-    try{
+    console.log("made it to controller")
+    const dayofMonth = dayjs(req.body.datePurchaseRequest).format('MMDD')
+    //const prString = (req.body.datePurchaseRequest.$y + "." + department + "." + dayofMonth)
+    //const date = dayjs(req.body.datePurchaseRequest).format('MM-DD-YYYY')
+        
 
         const newPR = new addPurchaseRequest({
-            prNumber: req.body.prNumber,
+            prNumber: req.body.prString,
             department: req.body.department,
             cardType: req.body.cardType,
             purchaseRequestAmount: req.body.purchaseRequestAmount,
@@ -25,10 +26,11 @@ const purchaseRequest = async(req,res) => {
         });
         await newPR.save();
         await mongoose.connection.close();
-    }catch(err){
-        return err
-    }
 
 }
 
-export default purchaseRequest;
+const getAllPrs = async(req,res) =>{
+
+}
+
+export default purchaseRequest; 

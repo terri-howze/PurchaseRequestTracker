@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 //var Long = mongoose.Schema.Types.Long;
 
 const AddPurchaseRequest = new Schema({
-    prNumber: {type: Number, require:true, unique:true},
+    prNumber: {type: String, require:true, unique:true},
     department : {type: Number, require:true},
     cardType: {type: String, required:true},
     purchaseRequestAmount: {type: Number, required:true},

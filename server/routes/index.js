@@ -13,7 +13,12 @@ router.get('/PR', (req,res) =>{
     res.send('hit router');
 })
 router.post('/PR/addPR', async (req,res) =>{
-    const newPR = await purchaseRequest(req);
+    const newPR = await purchaseRequest(req).then(() => {
+        console.log("made it")
+    }).catch((err) => {
+        console.log("Not Connected ERROR! ", err);
+    })
+    
     res.status(200).json(newPR);
 })
 

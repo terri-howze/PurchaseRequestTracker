@@ -40,9 +40,9 @@ function Pr_Create() {
       setCardNumber(e.target.value);
     }
 
-    const onNewDatePurchase = e => {
-      setDate(e.target.value);
-    }
+    // const onNewDatePurchase = e => {
+    //   setDate(e.target.value);
+    // }
 
     //Function to change purchaase request amount to new input state
     const onNewPurchaseRequestAmount = e =>{
@@ -50,21 +50,19 @@ function Pr_Create() {
     }
   
     // Function to handle submittal of Pr and save it
-    const handleSubmit = async(e) => {
-      const prNumber = makePrNumber()
+    const handleSubmit = (e) => {
+      const prString = makePrNumber()
       const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
-      setDate(date)
+      //setDate(date)
       const data = {
-        prNumber,
+        prString,
         department,
         cardType,
         purchaseRequestAmount,
-        cardNumber,
-        datePurchaseRequest
+        datePurchaseRequest,
+        cardNumber
           };
-    //await 
-    console.log(data)
-    //axios.post('http://localhost:8080/PR/addPR', data)
+      axios.post('http://localhost:8080/PR/addPR', data)
     falseMount()
     }
 
