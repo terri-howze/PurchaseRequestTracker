@@ -4,6 +4,7 @@ import '../css/Center_box.css'
 import { lazy } from 'react'
 import { useStateStore } from '../Store'
 import Pr_Create from './Pr_Create'
+import Dashboard from './Dashboard'
 
 export default function Center_box() {
 const [prNumber, setprNumber] = useState('0')
@@ -47,7 +48,7 @@ const handleSubmit = e => {
     {mountSatte ? (
         <Pr_Create />
       ) : (
-        <h1>Please sign up.</h1>
+        <Dashboard />
       )}
     </div>
     </>

@@ -50,7 +50,7 @@ function Pr_Create() {
     }
   
     // Function to handle submittal of Pr and save it
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
       const prString = makePrNumber()
       const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
       //setDate(date)
@@ -63,6 +63,7 @@ function Pr_Create() {
         cardNumber
           };
       axios.post('http://localhost:8080/PR/addPR', data)
+    
     falseMount()
     }
 
