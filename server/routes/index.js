@@ -7,11 +7,16 @@ var router = express.Router();
 import 'dotenv/config';
 import express from 'express';
 var router = express.Router();
-import purchaseRequest from '../controller/purchaserequest_controller.js'
+import { purchaseRequest } from '../controller/purchaserequest_controller.js'
+import { getDep20prs } from '../controller/purchaserequest_controller.js';
 
-router.get('/PR', (req,res) =>{
-    res.send('hit router');
+router.get('/PR/get20', async (req,res) =>{
+    const dep20prs = await getDep20prs(req).then(() =>{
+   
+    })
+    res.status(200).json(dep20prs)
 })
+
 router.post('/PR/addPR', async (req,res) =>{
     const newPR = await purchaseRequest(req).then(() => {
         console.log("made it")

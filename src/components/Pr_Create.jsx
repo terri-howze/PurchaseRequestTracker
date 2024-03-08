@@ -14,9 +14,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 
 
 function Pr_Create() {
-    const d = new Date();
     //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
-    //const [prNumber, setprNumber] = useState()
+    const [prNumber, setprNumber] = useState()
     const [department, setdepartment] = useState('0')
     const cardType = "Amex";
     const [purchaseRequestAmount, setAmount] = useState('0')
@@ -26,10 +25,10 @@ function Pr_Create() {
     const falseMount = useStateStore((state) => state.flagFalse)
     //Functions to handle submitting PR
 
-    // Function to change prNumber state to new prNumber input
-    // const onNewPR = e =>{
-    //   setprNumber(e.target.value);
-    // };
+    //Function to change prNumber state to new prNumber input
+    const onNewPR = e =>{
+      setprNumber(e.target.value);
+    };
     // Function to change department state to new department input
     const onNewDepartment = e =>{
       setdepartment(e.target.value);
@@ -51,11 +50,10 @@ function Pr_Create() {
   
     // Function to handle submittal of Pr and save it
     const handleSubmit = async(e) => {
-      const prString = makePrNumber()
       const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
       //setDate(date)
       const data = {
-        prString,
+        prNumber,
         department,
         cardType,
         purchaseRequestAmount,
@@ -67,19 +65,14 @@ function Pr_Create() {
     falseMount()
     }
 
-    //Function to combine enterered values to make a prNumber accoring to Sherpa's prestanding format
-    const makePrNumber = () => {
-      const dayofMonth = dayjs(date).format('MMDD')
-      const prString = (date.$y + "." + department + "." + dayofMonth)
-      return prString
-    }
-
     return (
       <div className='form_box_flex'>
         <p>
           Form Submittal
         </p>
       <form onSubmit={handleSubmit}>
+        <input type="text" onChange = {onNewPR}></input>
+        <label for ="Department">Purchase Request</label>
         <InputLabel id="department-label">Department</InputLabel>
         <Select
           id="department-label"
@@ -109,5 +102,6 @@ function Pr_Create() {
       </div>
   )
 }
+
 
 export default Pr_Create

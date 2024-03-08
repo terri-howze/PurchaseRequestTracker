@@ -1,11 +1,13 @@
 import React from 'react'
 import '../css/Dashboard.css'
 import { Card } from '@mui/material'
+import axios from 'axios'
 
 export default function Dashboard() {
 
-    const divisiontewntydata = () => {
-        
+    const divisiontewntydata = async () => {
+        const dep20data = await axios.get('http://localhost:8080/PR/get20')
+        console.log(dep20data)
     }
 
   return (

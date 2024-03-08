@@ -33,6 +33,7 @@
     "react-dom": "^18.2.0",
     "routes": "^2.1.0",
     "sequelize": "^6.37.1",
+    "tedious": "^17.0.0",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
