@@ -125,13 +125,21 @@ const getDep20prs = async(req,res) =>{
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
-    const results = await addPurchaseRequest.findAll({
+    console.log(req.query.data)
+     const results = await addPurchaseRequest.findAll({
       where:{
-        dep_num: 50
-      }
+        dep_num: req.query.data
+      },
+      
     })
-    console.log(results)
-    return results
+    const copyItems = [];
+    for(let i = 0; i < results.length, i++;){
+      copyItems.push(results[i])
+    }
+    results.forEach((results) =>{
+      copyItems.push(results)
+    })
+    return copyItems
   }catch(err){
       console.log(err)
   }

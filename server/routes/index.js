@@ -10,11 +10,14 @@ var router = express.Router();
 import { purchaseRequest } from '../controller/purchaserequest_controller.js'
 import { getDep20prs } from '../controller/purchaserequest_controller.js';
 
-router.get('/PR/get20', async (req,res) =>{
-    const dep20prs = await getDep20prs(req).then(() =>{
-   
-    })
-    res.status(200).json(dep20prs)
+router.get('/PR/get20/', async (req,res) =>{
+    try{
+        console.log(req.query)
+    const twentydata = await getDep20prs(req)
+    res.status(200).json(twentydata)
+    }catch(err){
+        res.status(500).json(err)
+    }
 })
 
 router.post('/PR/addPR', async (req,res) =>{
