@@ -3,9 +3,12 @@ import { useStateStore } from '../../Store'
 
 export default function departmentData() {
     const departmentState = useStateStore((state) => state.division)
+    const divisionResults = useStateStore((state) => state.divisionResults)
   return (
     <div>
-      State is working for {departmentState}
+        {divisionResults.map((divisionResults, index) =>{
+            <div key={index}>{divisionResults.id}, {divisionResults.prNumber}</div>
+        })}
     </div>
   )
 }

@@ -9,12 +9,18 @@ export default function Dashboard() {
 
     const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
     const departmentState = useStateStore((state) =>state.division)
+
+    const divisionResults = useStateStore((state) => state.divisionResults)
+    const setdivisionResults = useStateStore((state) => state.setdivisionResults)
 ///////////////Division 20 pull requests /////////////////////////
     const getTwentyData = async () => {
       const division = 20
-      const divisionData = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+      const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+      const divisionData = axrequest.data
+      setdivisionResults(divisionData)
+
       setdepartmentState(division)
-      console.log(divisionData.data)
+      console.log(divisionResults)
     }
 
 ///////////////Division 50 pull requests /////////////////////////
