@@ -6,9 +6,7 @@ export default function departmentData() {
     const divisionResults = useStateStore((state) => state.divisionResults)
   return (
     <div>
-        {divisionResults.map((divisionResults, index) =>{
-            <div key={index}>{divisionResults.id}, {divisionResults.prNumber}</div>
-        })}
+        {divisionResults.map((divisionResults) =>{<div>{divisionResults}</div>})}
     </div>
   )
 }

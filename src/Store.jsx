@@ -16,6 +16,8 @@ export const useStateStore = create((set) => ({
     flagFalse: () => set({ isMounted: false}),
     setDepartmentStore: (departmentID) => set({division: departmentID}),
     resetDepartmentStore: () => set({division: 0}),
-    setdivisionResults: (divisionData) => set({divisionResults: divisionData})
+    setdivisionResults: (divisionData) => set((state) => ({
+        divisionResults: [...state.divisionResults, ...divisionData]
+    }))
 
 }))
