@@ -23,6 +23,7 @@ function Pr_Create() {
     const [date, setDate] = useState("")
     const mountSatte = useStateStore((state) => state.isMounted)
     const falseMount = useStateStore((state) => state.flagFalse)
+    const divisionResults = useStateStore((state) => state.divisionResults)
     //Functions to handle submitting PR
 
     //Function to change prNumber state to new prNumber input
@@ -52,6 +53,7 @@ function Pr_Create() {
     const handleSubmit = async(e) => {
       const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
       //setDate(date)
+      console.log(divisionResults)
       const data = {
         prNumber,
         department,

@@ -1,24 +1,23 @@
 import React from 'react'
 import '../css/Dashboard.css'
+import { useState } from 'react'
 import { Card } from '@mui/material'
 import axios from 'axios'
 import { useStateStore } from '../Store'
 import DepartmentData from './Division Pr Get request Data/departmentData'
 
 export default function Dashboard() {
-
     const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
     const departmentState = useStateStore((state) =>state.division)
+    const setdivisionResults = useStateStore(state => state.setdivisionResults)
+    const divisionResults = useStateStore(state => state.divisionResults)
 
-    const divisionResults = useStateStore((state) => state.divisionResults)
-    const setdivisionResults = useStateStore((state) => state.setdivisionResults)
 ///////////////Division 20 pull requests /////////////////////////
     const getTwentyData = async () => {
       const division = 20
       const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
       const divisionData = axrequest.data
       setdivisionResults(divisionData)
-
       setdepartmentState(division)
       console.log(divisionResults)
     }
@@ -26,9 +25,11 @@ export default function Dashboard() {
 ///////////////Division 50 pull requests /////////////////////////
     const getFiftyData = async () => {
       const division = 50
-        const divisionData = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-        setdepartmentState(division)
-        console.log(divisionData.data)       
+        const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+        const divisionData = axrequest.data
+      setdivisionResults(divisionData)
+      setdepartmentState(division)
+      console.log(divisionResults)     
     }
 
 ///////////////Division 51 pull requests /////////////////////////
@@ -79,7 +80,7 @@ const getFiftyThreeData = async () => {
         {departmentState === 0 ? (
           'data here'
         ):(
-          <DepartmentData />
+          {divisionResults}
         )}
       </div>
     </>
