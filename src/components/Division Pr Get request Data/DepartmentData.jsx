@@ -6,7 +6,7 @@ export default function departmentData() {
     const divisionResults = useStateStore((state) => state.divisionResults)
 
     const handleSubmit = (e) =>{
-      console.log(divisionResults)
+      console.log(divisionResults[0])
     } 
   return (
     <>

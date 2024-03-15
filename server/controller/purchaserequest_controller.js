@@ -132,14 +132,15 @@ const getDep20prs = async(req,res) =>{
       },
       
     })
-    const copyItems = [];
-    for(let i = 0; i < results.length, i++;){
-      copyItems.push(results[i])
-    }
-    results.forEach((results) =>{
-      copyItems.push(results)
-    })
-    return copyItems
+    console.log(results)
+    // const copyItems = [];
+    // for(let i = 0; i < results.length, i++;){
+    //   copyItems.push(results[i])
+    // }
+    // results.forEach((results) =>{
+    //   copyItems.push(results)
+    // })
+    return results
   }catch(err){
       console.log(err)
   }
