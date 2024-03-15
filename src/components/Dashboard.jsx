@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { Card } from '@mui/material'
 import axios from 'axios'
 import { useStateStore } from '../Store'
-//import DepartmentData from './Division Pr Get request Data/departmentData'
+import DepartmentData from './Division Pr Get request Data/departmentData'
 
 export default function Dashboard() {
-  const [divdata, getData] = useState('')
+    const [divdata, getData] = useState([])
     const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
     const departmentState = useStateStore((state) =>state.division)
     const setdivisionResults = useStateStore((state) => state.setdivisionResults)
@@ -17,8 +17,16 @@ export default function Dashboard() {
     const getTwentyData = async () => {
       const division = 20
       const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-      console.log(axrequest.data)
+      // for(let i = 0; i < axrequest.data.length; i++) {
+      //   console.log(axrequest.data[i])
+      //   setdivisionResults(axrequest.data[i])
+      //   console.log("successfully added")
+      // }
+      divdata.push(...axrequest.data)
+      console.log(divdata)
+      console.log(Array.isArray(divdata))
       setdepartmentState(division)
+      
     }
 
 ///////////////Division 50 pull requests /////////////////////////
@@ -79,7 +87,7 @@ const getFiftyThreeData = async () => {
         {departmentState === 0 ? (
           'data here'
         ):(
-            'stuff'
+            <DepartmentData data={divdata}/>
         )}
         {/* {divdata.map((i) =>{
           <p>{i.prNumber}</p>
