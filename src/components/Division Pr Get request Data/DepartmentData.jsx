@@ -1,27 +1,26 @@
 import React from 'react'
 import { useStateStore } from '../../Store'
+import '../../css/DepartmentData.css'
 
-export default function departmentData(props) {
+export default function DepartmentData(props) {
     const departmentState = useStateStore((state) => state.division)
     const divisionResults = useStateStore((state) => state.divisionResults)
 
-    const handleSubmit = (e) =>{
-      console.log(props.data)
-      console.log(departmentState)
+    const handleSubmit = (i) =>{
+      console.log(i)
     } 
   return (
     <>
       {props.data.map((i) => {
         return(
-          <div>{i.prNumber}</div>
+          <div className='div_container'>
+            <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>
+          </div>
         )
       }
       )
       
       }
-      <div>
-        <button onClick={handleSubmit}> Test here</button>
-      </div>
     </>
   )
 }

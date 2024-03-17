@@ -1,0 +1,7 @@
+.records_div {
+  border: solid 1px black;
+}
+
+.records_div:hover {
+  background-color: #d3d3d3;
+}
