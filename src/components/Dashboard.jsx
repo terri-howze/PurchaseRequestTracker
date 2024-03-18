@@ -9,10 +9,13 @@ import DepartmentData from './Division Pr Get request Data/DepartmentData'
 
 export default function Dashboard() {
     const [divdata, getData] = useState([])
+
     const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
     const departmentState = useStateStore((state) =>state.division)
-    const setdivisionResults = useStateStore((state) => state.setdivisionResults)
-    const divisionResults = useStateStore(state => state.divisionResults)
+
+    const Loading = useStateStore((state) => state.isLoading)
+    const isLoading = useStateStore((state) => state.flagLoadingTrue)
+    const isNotLoading = useStateStore((state) => state.flagLoadingFalse)
 
 ///////////////Division 20 pull requests /////////////////////////
     const getTwentyData = async () => {
@@ -84,7 +87,6 @@ const getFiftyThreeData = async () => {
         </div>
       </div>
       <div>
-        
         {departmentState === 0 ? (
           'data here'
         ):(
