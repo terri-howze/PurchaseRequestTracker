@@ -133,17 +133,37 @@ const getDep20prs = async(req,res) =>{
       
     })
     console.log(results)
-    // const copyItems = [];
-    // for(let i = 0; i < results.length, i++;){
-    //   copyItems.push(results[i])
-    // }
-    // results.forEach((results) =>{
-    //   copyItems.push(results)
-    // })
     return results
   }catch(err){
       console.log(err)
   }
 }
 
-export {purchaseRequest, getDep20prs}; 
+const searchBar = async(req,res) =>{
+  const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mssql',
+    port: 1433,
+    dialectOptions: {
+      options: { "requestTimeout": 300000 }
+    }
+  });
+  try{
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+    await sequelize.sync();
+    console.log(req.query.data)
+     const results = await addPurchaseRequest.findAll({
+      where:{
+        prNumber: req.query.data
+      },
+      
+    })
+    console.log(results)
+    return results
+  }catch(err){
+      console.log(err)
+  }
+}
+
+export {purchaseRequest, getDep20prs, searchBar}; 

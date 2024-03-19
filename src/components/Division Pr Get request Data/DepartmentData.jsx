@@ -29,11 +29,6 @@ export default function DepartmentData(props) {
       
       }
       <div className='loading_animation'>
-        <l-bouncy
-        size="150"
-        speed="1.75" 
-        color="black">       
-        </l-bouncy>
       </div>
     </>
   )

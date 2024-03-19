@@ -18,6 +18,6 @@ export const useStateStore = create((set) => ({
     setDepartmentStore: (departmentID) => set({division: departmentID}),
     resetDepartmentStore: () => set({division: 0}),
     flagLoadingTrue: () => set({ loading: true}),
-    flagLoadingFalse: () => set({ laoding: false}),
+    flagLoadingFalse: () => set({ loading: false}),
 
 }))

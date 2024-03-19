@@ -5,6 +5,7 @@ import { Card } from '@mui/material'
 import axios from 'axios'
 import { useStateStore } from '../Store'
 import DepartmentData from './Division Pr Get request Data/DepartmentData'
+import DivisionList from './DivisionList'
 
 
 export default function Dashboard() {
@@ -13,34 +14,32 @@ export default function Dashboard() {
     const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
     const departmentState = useStateStore((state) =>state.division)
 
-    const Loading = useStateStore((state) => state.isLoading)
+    const Loading = useStateStore((state) => state.loading)
     const isLoading = useStateStore((state) => state.flagLoadingTrue)
     const isNotLoading = useStateStore((state) => state.flagLoadingFalse)
 
 ///////////////Division 20 pull requests /////////////////////////
     const getTwentyData = async () => {
       const division = 20
+      isLoading()
       const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-      // for(let i = 0; i < axrequest.data.length; i++) {
-      //   console.log(axrequest.data[i])
-      //   setdivisionResults(axrequest.data[i])
-      //   console.log("successfully added")
-      // }
       divdata.push(...axrequest.data)
-      console.log(divdata)
-      console.log(Array.isArray(divdata))
+      isNotLoading()
       setdepartmentState(division)
+      
       
     }
 
 ///////////////Division 50 pull requests /////////////////////////
     const getFiftyData = async () => {
       const division = 50
-        const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-        divdata.push(...axrequest.data)
-        console.log(divdata)
-        console.log(Array.isArray(divdata))
-        setdepartmentState(division)     
+      console.log(Loading)
+      isLoading()
+      console.log(Loading)
+      const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+      divdata.push(...axrequest.data)
+      isNotLoading()
+      setdepartmentState(division)     
     }
 
 ///////////////Division 51 pull requests /////////////////////////
@@ -87,11 +86,9 @@ const getFiftyThreeData = async () => {
         </div>
       </div>
       <div>
-        {departmentState === 0 ? (
-          'data here'
-        ):(
-            <DepartmentData data={divdata}/>
-        )}
+        {Loading  ?  <l-bouncy size="150" speed="1.75" color="black"> </l-bouncy>
+        : <DepartmentData data={divdata}/>
+        }
         {/* {divdata.map((i) =>{
           <p>{i.prNumber}</p>
         })} */}

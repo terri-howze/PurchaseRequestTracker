@@ -1,14 +1,8 @@
 var router = express.Router();
-
-// import path from 'path';
-// const PRAPI = path.resolve('./api/purchaseorderapi');
-
-// router.get('/PR', PRAPI)
 import 'dotenv/config';
 import express from 'express';
 var router = express.Router();
-import { purchaseRequest } from '../controller/purchaserequest_controller.js'
-import { getDep20prs } from '../controller/purchaserequest_controller.js';
+import { purchaseRequest, getDep20prs, searchBar } from '../controller/purchaserequest_controller.js'
 
 router.get('/PR/get20/', async (req,res) =>{
     try{
@@ -29,6 +23,15 @@ router.post('/PR/addPR', async (req,res) =>{
     })
     
     res.status(200).json(newPR);
+})
+
+router.get('/PR/searchBar', async (req,res) =>{
+    try{
+    const searchData = await getDep20prs(req)
+    res.status(200).json(searchData)
+    }catch(err){
+        res.status(500).json(err)
+    }
 })
 
 
