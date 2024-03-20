@@ -27,7 +27,7 @@ router.post('/PR/addPR', async (req,res) =>{
 
 router.get('/PR/searchBar', async (req,res) =>{
     try{
-    const searchData = await getDep20prs(req)
+    const searchData = await searchBar(req)
     res.status(200).json(searchData)
     }catch(err){
         res.status(500).json(err)

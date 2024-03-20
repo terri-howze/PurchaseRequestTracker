@@ -153,7 +153,7 @@ const searchBar = async(req,res) =>{
     console.log('Connection has been established successfully.');
     await sequelize.sync();
     console.log(req.query.data)
-     const results = await addPurchaseRequest.findAll({
+     const results = await addPurchaseRequest.findOne({
       where:{
         prNumber: req.query.data
       },
