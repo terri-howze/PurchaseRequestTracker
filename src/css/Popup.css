@@ -20,6 +20,11 @@
   margin-left: 200px;
 }
 
+.update-btn{
+  position: absolute;
+  top: 16px;
+  right: 70px;
+}
 .close-btn {
   position: absolute;
   top: 16px;
