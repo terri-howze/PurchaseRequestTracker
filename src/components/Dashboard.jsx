@@ -10,7 +10,7 @@ import DivisionList from './DivisionList'
 
 export default function Dashboard() {
     const [divdata, getData] = useState([])
-
+    const arr = []
     const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
     const departmentState = useStateStore((state) =>state.division)
 
@@ -20,22 +20,22 @@ export default function Dashboard() {
 
 ///////////////Division 20 pull requests /////////////////////////
     const getTwentyData = async () => {
+      divdata.splice(0,divdata.length)
       const division = 20
       isLoading()
       const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
       divdata.push(...axrequest.data)
       isNotLoading()
       setdepartmentState(division)
-      
+     989887 
       
     }
 
 ///////////////Division 50 pull requests /////////////////////////
     const getFiftyData = async () => {
+      divdata.splice(0,divdata.length)
       const division = 50
-      console.log(Loading)
       isLoading()
-      console.log(Loading)
       const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
       divdata.push(...axrequest.data)
       isNotLoading()
@@ -44,26 +44,35 @@ export default function Dashboard() {
 
 ///////////////Division 51 pull requests /////////////////////////
 const getFiftyOneData = async () => {
+  divdata.splice(0,divdata.length)
   const division = 51
-  const divisionData = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-  setdepartmentState(division)
-  console.log(divisionData.data)        
+  isLoading()
+  const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+  divdata.push(...axrequest.data)
+  isNotLoading()
+  setdepartmentState(division)         
 }
 
 ///////////////Division 52 pull requests /////////////////////////
 const getFiftyTwoData = async () => {
+  divdata.splice(0,divdata.length)
   const division = 52
-  const divisionData = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-  setdepartmentState(division)
-  console.log(divisionData.data)       
+  isLoading()
+  const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+  divdata.push(...axrequest.data)
+  isNotLoading()
+  setdepartmentState(division)        
 }
 
 ///////////////Division 53 pull requests /////////////////////////
 const getFiftyThreeData = async () => {
+  divdata.splice(0,divdata.length)
   const division = 53
-  const divisionData = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
-  setdepartmentState(division)
-  console.log(divisionData.data)       
+  isLoading()
+  const axrequest = await axios.get('http://localhost:8080/PR/get20', {params: {data: division}})
+  divdata.push(...axrequest.data)
+  isNotLoading()
+  setdepartmentState(division)        
 }
 
   return (

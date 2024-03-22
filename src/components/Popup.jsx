@@ -9,6 +9,7 @@ export default function Popup(props) {
   }
 
   return (props.trigger) ? (
+    <>
     <div className='popup'>
       <div className='popup-inner'>
         PR Number: {props.data.prNumber}<br />
@@ -20,7 +21,11 @@ export default function Popup(props) {
         <button className='update-btn' onClick={handleUpdate}>Update</button>
         <button className='close-btn' onClick={() => props.setTrigger(false)}>Close</button>
       </div>
-
     </div>
+    <div>
+      
+    </div>
+    </>
+    
   ) : "";
 }
