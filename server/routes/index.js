@@ -2,7 +2,7 @@ var router = express.Router();
 import 'dotenv/config';
 import express from 'express';
 var router = express.Router();
-import { purchaseRequest, getDep20prs, searchBar } from '../controller/purchaserequest_controller.js'
+import { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest } from '../controller/purchaserequest_controller.js'
 
 router.get('/PR/get20/', async (req,res) =>{
     try{
@@ -24,6 +24,16 @@ router.post('/PR/addPR', async (req,res) =>{
     
     res.status(200).json(newPR);
 })
+
+router.post('/PR/updatePR', async (req, res) =>{
+    try{
+    await updatePurchaseRequest(req)
+    res.status(200)
+    }catch(err){
+res.status(500).json(err)
+    }   
+})
+
 
 router.get('/PR/searchBar', async (req,res) =>{
     try{

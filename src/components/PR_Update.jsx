@@ -3,7 +3,7 @@ import { useState } from 'react'
 // import { FormControl } from '@mui/material'
 import { Select } from '@mui/material'
 import { MenuItem } from '@mui/material'
-import '../css/Pr_Create.css'
+import '../css/Pr_Update.css'
 import { InputLabel } from '@mui/material'
 import { useStateStore } from '../Store'
 import axios from 'axios'
@@ -11,16 +11,19 @@ import { DatePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers'
+import { formatDate } from 'date-fns'
 
 
-function Pr_Create() {
+function Pr_Update(props) {
     //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
-    // const [prNumber, setprNumber] = useState()
-    // const [department, setdepartment] = useState('0')
-    // const cardType = "Amex";
-    // const [purchaseRequestAmount, setAmount] = useState('0')
-    // const [cardNumber, setCardNumber] = useState('0')
-    // const [date, setDate] = useState("")
+    const formatDate = props.data.datePurchaseRequest.slice(0,10)
+    const [prNumber, setprNumber] = useState(props.data.prNumber)
+    const [department, setdepartment] = useState(props.data.dep_num)
+    const cardType = "Amex";
+    const [purchaseRequestAmount, setAmount] = useState(props.data.purchaseRequestAmount)
+    const [cardNumber, setCardNumber] = useState(props.data.cardNumber)
+    const [date, setDate] = useState(formatDate)
+    const id = props.data.id
     // const mountSatte = useStateStore((state) => state.isMounted)
     // const falseMount = useStateStore((state) => state.flagFalse)
     // const divisionResults = useStateStore((state) => state.divisionResults)
@@ -53,8 +56,8 @@ function Pr_Create() {
     const handleSubmit = async(e) => {
       const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
       //setDate(date)
-      console.log(divisionResults)
       const data = {
+        id,
         prNumber,
         department,
         cardType,
@@ -62,16 +65,20 @@ function Pr_Create() {
         datePurchaseRequest,
         cardNumber
           };
-      axios.post('http://localhost:8080/PR/addPR', data)
-    }
+          console.log(data)
+      await axios.post('http://localhost:8080/PR/updatePR', data,)
+      }
 
     return (
+    <>
+    <div className='popup'>
+    <div className='popup-inner'>
       <div className='form_box_flex'>
         <p>
           Form Submittal
         </p>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange = {onNewPR}></input>
+        <input type="text" onChange = {onNewPR} value={prNumber}></input>
         <label for ="Department">Purchase Request</label>
         <InputLabel id="department-label">Department</InputLabel>
         <Select
@@ -88,20 +95,25 @@ function Pr_Create() {
           <MenuItem value={53}>53</MenuItem>
         </Select>
         <label for ="Department">Purchase Request Amount</label>
-        <input type="text" onChange = {onNewPurchaseRequestAmount}></input>
+        <input type="text" onChange = {onNewPurchaseRequestAmount} value={purchaseRequestAmount}></input>
         <label for ="Department">Card Number</label>
-        <input type="text" onChange = {onNewCardNumber}></input> 
+        <input type="text" onChange = {onNewCardNumber} value={cardNumber}></input> 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
+        value={dayjs(formatDate)}
         onChange={(newValue) => {
           setDate(newValue)
         }} />
         </LocalizationProvider>
       </form>
       <button onClick={handleSubmit}>Submit</button>
+      <button className='close-btn' onClick={() => props.setDisplay(false)}>Cancel</button>
       </div>
+      </div>
+      </div>
+    </>
   )
 }
 
 
-export default Pr_Create
+export default Pr_Update

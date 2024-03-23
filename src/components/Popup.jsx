@@ -1,15 +1,17 @@
 import React from 'react'
 import '../css/Popup.css'
+import Pr_Update from './PR_Update'
+import { useState } from 'react'
 
 export default function Popup(props) {
-
+  const[display_update, setUpdate] = useState(false)
   const handleUpdate = () =>{
-    const data = props.data
-
+    setUpdate(true)
   }
 
   return (props.trigger) ? (
     <>
+    {display_update ? <Pr_Update display={display_update} setDisplay={setUpdate} data={props.data}/>:
     <div className='popup'>
       <div className='popup-inner'>
         PR Number: {props.data.prNumber}<br />
@@ -22,8 +24,9 @@ export default function Popup(props) {
         <button className='close-btn' onClick={() => props.setTrigger(false)}>Close</button>
       </div>
     </div>
+}
     <div>
-      
+
     </div>
     </>
     
