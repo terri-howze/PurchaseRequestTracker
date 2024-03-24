@@ -200,5 +200,66 @@ const updatePurchaseRequest = async(req,res) => {
           console.log(err)
       }
 }
+const deletePurchaseRequestPurchaseRequest = async(req,res) => {
+  console.log("made it to controller")
 
-export {purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest}; 
+      const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
+        host: process.env.DB_HOST,
+        dialect: 'mssql',
+        port: 1433,
+        dialectOptions: {
+          options: { "requestTimeout": 300000 }
+        }
+
+      });
+      const purchaseRequest = sequelize.define('purchaseRequest',{
+        prNumber:{
+        type: DataTypes.CHAR,
+        allowNull: false
+        },
+        dep_num:{
+          type: DataTypes.INTEGER,
+          allowNull: false
+        },
+        cardType:{
+          type: DataTypes.CHAR,
+          allowNull: false
+        },
+        cardNumber:{
+          type: DataTypes.INTEGER,
+          allowNull: false
+        },
+        datePurchaseRequest:{
+          type: DataTypes.DATE,
+          allowNull: false
+        },
+        purchaseRequestAmount:{
+          type: DataTypes.DECIMAL(19,4),
+          allowNull: false
+        },
+        poNumber:{
+          type: DataTypes.CHAR,
+          allowNull: true
+        }
+      },{
+        freezeTableName: true
+      })
+      
+      try{
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+        await sequelize.sync();
+        await purchaseRequest.destroy({
+        where: {
+          id:req.body.id
+        }}
+        )
+        console.log(req.body)
+          
+      }catch(err){
+          console.log(err)
+      }
+}
+
+
+export {purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest}; 

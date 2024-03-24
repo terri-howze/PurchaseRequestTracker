@@ -2,7 +2,7 @@ var router = express.Router();
 import 'dotenv/config';
 import express from 'express';
 var router = express.Router();
-import { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest } from '../controller/purchaserequest_controller.js'
+import { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest } from '../controller/purchaserequest_controller.js'
 
 router.get('/PR/get20/', async (req,res) =>{
     try{
@@ -10,6 +10,15 @@ router.get('/PR/get20/', async (req,res) =>{
     const twentydata = await getDep20prs(req)
     console.log(twentydata)
     res.status(200).json(twentydata)
+    }catch(err){
+        res.status(500).json(err)
+    }
+})
+
+router.get('/PR/searchBar', async (req,res) =>{
+    try{
+    const searchData = await searchBar(req)
+    res.status(200).json(searchData)
     }catch(err){
         res.status(500).json(err)
     }
@@ -34,15 +43,17 @@ res.status(500).json(err)
     }   
 })
 
-
-router.get('/PR/searchBar', async (req,res) =>{
+router.delete('/PR/deletePR', async (req,res) =>{
     try{
-    const searchData = await searchBar(req)
-    res.status(200).json(searchData)
+        await deletePurchaseRequest(req)
+        res.status(200).json("Purchase Request Successfully Deleted")
     }catch(err){
         res.status(500).json(err)
     }
 })
+
+
+
 
 
 export default router;
