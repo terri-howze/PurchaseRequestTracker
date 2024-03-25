@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "tauri": "tauri",
-    "start": "node server/server.js"
+    "start": "concurrently \"nodemon server/server.js\" \"npm run dev\" "
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -19,6 +19,7 @@
     "@mui/material": "^5.15.10",
     "@mui/x-date-pickers": "^6.19.4",
     "axios": "^1.6.7",
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
