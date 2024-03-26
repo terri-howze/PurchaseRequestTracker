@@ -8,7 +8,10 @@ use tauri::{CustomMenuItem, Menu, MenuItem, Submenu};
 //     menu:Menu::new.add_native_item(MenuItem::Quit),
 //   ));
 // }
-
+use tauri::{
+  api::process::{Command, CommandEvent},
+  Manager,
+};
 
 
 
@@ -20,7 +23,31 @@ fn main() {
   .add_item(CustomMenuItem::new("hide", "Hide"))
   .add_submenu(submenu);
   tauri::Builder::default()
-    .menu(menu)
+  .setup(|app| {
+    let window = app.get_window("main").unwrap();
+    tauri::async_runtime::spawn(async move {
+      let (mut rx, mut child) = Command::new_sidecar("server-x86_64-pc-windows-msvc")
+        .expect("failed to setup `app` sidecar")
+        .spawn()
+        .expect("Failed to spawn packaged node");
+
+      let mut i = 0;
+      while let Some(event) = rx.recv().await {
+        if let CommandEvent::Stdout(line) = event {
+          window
+            .emit("message", Some(format!("'{}'", line)))
+            .expect("failed to emit event");
+          i += 1;
+          if i == 4 {
+            child.write("message from Rust\n".as_bytes()).unwrap();
+            i = 0;
+          }
+        }
+      }
+    });
+
+    Ok(())
+  }).menu(menu)
     .on_menu_event(|event| {
       match event.menu_item_id() {
         "quit" => {
@@ -35,3 +62,4 @@ fn main() {
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
+
