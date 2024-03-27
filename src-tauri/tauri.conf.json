@@ -24,7 +24,7 @@
       ],
       "resources": [],
       "externalBin": [
-        "/sherpatest/src-tauri/binaries/server"
+        "/Users/howze/test_sherpa/sherpatest/server/server"
       ],
       "copyright": "",
       "category": "DeveloperTool",
@@ -39,16 +39,20 @@
         "frameworks": [],
         "providerShortName": null,
         "signingIdentity": null
-      }},
-      "allowlist": {
-        "all": false,
-        "shell": {
-          "sidecar": true,
-          "scope":[
-            {"name": "/sherpatest/src-tauri/binaries/server", "sidecar": true}
-          ]
-        }
-      },   
+      }
+    },
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "/Users/howze/test_sherpa/sherpatest/server/server",
+            "sidecar": true
+          }
+        ]
+      }
+    },
     "windows": [
       {
         "fullscreen": false,
