@@ -1,4 +1,3 @@
-import React from 'react'
 import { useStateStore } from '../../Store'
 import '../../css/DepartmentData.css'
 import { bouncy } from 'ldrs'

@@ -1,4 +1,3 @@
-import React from 'react'
 import '../css/Popup.css'
 import Pr_Update from './PR_Update'
 import { useState } from 'react'

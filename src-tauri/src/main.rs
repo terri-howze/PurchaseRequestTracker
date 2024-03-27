@@ -23,8 +23,8 @@ fn main() {
   .add_item(CustomMenuItem::new("hide", "Hide"))
   .add_submenu(submenu);
   tauri::Builder::default()
-  .setup(|app| {
-    let window = app.get_window("main").unwrap();
+  .setup(|server| {
+    let window = server.get_window("main").unwrap();
     tauri::async_runtime::spawn(async move {
       let (mut rx, mut child) = Command::new_sidecar("server-x86_64-pc-windows-msvc")
         .expect("failed to setup `app` sidecar")

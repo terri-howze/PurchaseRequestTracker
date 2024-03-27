@@ -1,0 +1,187 @@
+/* App.css */
+/* css/Right_side_bar.css */
+/* css/Center_box.css */
+.center_box_flex {
+  background-color: white;
+  width: 100vw;
+}
+
+/* css/Pr_Create.css */
+.form_box_flex {
+  background-color: #F5F5F5;
+  width: 100%;
+}
+
+/* css/Dashboard.css */
+.dep_flex_div {
+  display: flex;
+  flex-direction: row;
+}
+.dep_div {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+.dep_div:hover {
+  background-color: #d3d3d3;
+}
+.loading_animation {
+  margin: auto;
+  width: 20%;
+}
+
+/* css/DepartmentData.css */
+.records_div {
+  border: solid 1px black;
+}
+.records_div:hover {
+  background-color: #d3d3d3;
+}
+
+/* css/Popup.css */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup-inner {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  background-color: #FFF;
+  margin-left: 200px;
+}
+.update-btn {
+  position: absolute;
+  top: 16px;
+  right: 70px;
+}
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+.delete-btn {
+  position: absolute;
+  top: 16px;
+  right: 133px;
+}
+
+/* css/Pr_Update.css */
+.form_box_flex {
+  background-color: #F5F5F5;
+  width: 100%;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup-inner {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  background-color: #FFF;
+  margin-left: 200px;
+}
+.update-btn {
+  position: absolute;
+  top: 16px;
+  right: 70px;
+}
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+/* css/Left_side_bar.css */
+.sidebar_setup {
+  height: 100vh;
+  width: 300px;
+  background-color: #253646;
+}
+.left_sidebar_flex_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon_text_flex {
+  display: flex;
+  flex-direction: row;
+}
+
+/* css/Flexbox.css */
+.container_flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* css/Header.css */
+.header_bg {
+  width: 100%;
+  height: 50px;
+  background-color: #253646;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  font-weight: 700;
+  font-size: x-large;
+}
+.company_name {
+  margin-left: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  padding-top: 13px;
+  border: 0;
+  margin-top: 0px;
+  color: white;
+}
+input[type=search] {
+  width: 50%;
+  height: 50px;
+  border: none;
+  font-size: large;
+  background-color: #253646;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+}
+input:focus {
+  outline: none;
+}
+.header_flexbox {
+  display: flex;
+}
+.form_div {
+  padding-left: 2px;
+  margin-top: 0px;
+  width: 1000px;
+}
+.search_icon_div {
+  padding-left: 65px;
+  margin-top: 13px;
+}
+
+/* main.css */
+body {
+  margin: 0px;
+  padding: 0;
+}

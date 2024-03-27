@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../css/Left_side_bar.css'
-import { Leaderboard, LeaderboardOutlined, AddCircleOutline,Margin } from '@mui/icons-material'
+import { LeaderboardOutlined, AddCircleOutline} from '@mui/icons-material'
 import { useStateStore } from '../Store'
 
 function Left_side_bar() {

@@ -1,10 +1,5 @@
-import { useState } from 'react'
-import React from 'react';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
-import axios from 'axios'
-import Navbar from './components/Navbar'
 import Right_side_bar from './components/Right_side_bar'
 import Center_box from './components/Center_box'
 import Left_side_bar from './components/Left_Side_Bar'

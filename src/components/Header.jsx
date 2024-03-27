@@ -1,4 +1,3 @@
-import React from 'react'
 import '../css/Header.css'
 import { Button } from '@mui/material'
 import { Search } from '@mui/icons-material'

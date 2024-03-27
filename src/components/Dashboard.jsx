@@ -1,4 +1,3 @@
-import React from 'react'
 import '../css/Dashboard.css'
 import { useState } from 'react'
 import { Card } from '@mui/material'

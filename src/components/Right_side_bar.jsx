@@ -1,4 +1,3 @@
-import React from 'react'
 import '../css/Right_side_bar.css'
 import { Leaderboard, LeaderboardOutlined } from '@mui/icons-material'
 

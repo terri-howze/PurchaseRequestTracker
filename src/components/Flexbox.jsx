@@ -1,4 +1,3 @@
-import React from "react"
 import '../css/Flexbox.css'
 
 export default function Flexbox ({ children }) { 
