@@ -24,7 +24,7 @@
       ],
       "resources": [],
       "externalBin": [
-        "/sherpatest/src-tauri/binaries/server"
+        "/Users/howze/test_sherpa/sherpatest/src-tauri/bin/server"
       ],
       "copyright": "",
       "category": "DeveloperTool",
@@ -47,7 +47,7 @@
         "sidecar": true,
         "scope": [
           {
-            "name": "/sherpatest/src-tauri/binaries/server",
+            "name": "/Users/howze/test_sherpa/sherpatest/src-tauri/bin/server",
             "sidecar": true
           }
         ]

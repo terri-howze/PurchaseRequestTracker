@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "bin": "server/server.js",
+  "pkg": {
+    "assets": "server/**/*"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,7 +14,8 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "start": "concurrently \"nodemon server/server.js\" \"npm run dev\" ",
-    "server": "node server/server.js"
+    "server": "node server/server.js",
+    "package": "pkg package.json --target latest-win-x64 --output src-tauri/binaries/app && node scripts/move-binary.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -19,12 +24,14 @@
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.10",
     "@mui/x-date-pickers": "^6.19.4",
+    "@tauri-apps/api": "^1.5.3",
     "axios": "^1.6.7",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
     "dotenv": "^16.4.1",
+    "execa": "^8.0.1",
     "express": "^4.18.2",
     "ip": "^2.0.1",
     "ldrs": "^1.0.1",
