@@ -49,6 +49,18 @@ const purchaseRequest = async (req, res) => {
     poNumber: {
       type: DataTypes.CHAR,
       allowNull: true
+    },
+    chrisApproval:{
+      type: DataTypes.BOOLEAN,
+      allowNull: True
+    },
+    jasonApproval:{
+      type: DataTypes.BOOLEAN,
+      allowNull: True
+    },
+    tonyaApproval:{
+      type: DataTypes.BOOLEAN,
+      allowNull: True
     }
   }, {
     freezeTableName: true
@@ -104,6 +116,9 @@ const getDep20prs = async (req, res) => {
   } catch (err) {
     console.log(err)
   }
+  // const anime = await axios.get('https://jsonplaceholder.typicode.com/users')
+  // return anime.data
+
 }
 
 const searchBar = async (req, res) => {

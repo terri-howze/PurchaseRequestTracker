@@ -23,6 +23,11 @@ function Pr_Create() {
     const mountSatte = useStateStore((state) => state.isMounted)
     const falseMount = useStateStore((state) => state.flagFalse)
     const divisionResults = useStateStore((state) => state.divisionResults)
+    const [chrisApproval, setChris] = useState(false)
+    const [JasonApproval, setJason] = useState(false)
+    const [tonyaApproval, setTonya] = useState(false)
+
+
     //Functions to handle submitting PR
 
     //Function to change prNumber state to new prNumber input
@@ -38,10 +43,6 @@ function Pr_Create() {
     const onNewCardNumber = e =>{
       setCardNumber(e.target.value);
     }
-
-    // const onNewDatePurchase = e => {
-    //   setDate(e.target.value);
-    // }
 
     //Function to change purchaase request amount to new input state
     const onNewPurchaseRequestAmount = e =>{
@@ -98,6 +99,22 @@ function Pr_Create() {
           setDate(newValue)
         }} />
         </LocalizationProvider>
+        <br />
+        Chris Approval
+        <label class="switch">  
+        <input type="checkbox" id='chrisSwitch'/>
+        <span class="slider round"></span>
+      </label>
+      Jason Approval
+      <label class="switch">  
+        <input type="checkbox" id='jasonSwitch'/>
+        <span class="slider round"></span>
+      </label>
+      Tonya Approval
+      <label class="switch">
+        <input type="checkbox" id='tonyaSwitch'/>
+        <span class="slider round"></span>
+      </label>
       </form>
       <button onClick={handleSubmit}>Submit</button>
       </div>

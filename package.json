@@ -3,10 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "bin": "server/server.js",
-  "pkg": {
-    "assets": "server/**/*"
-  },
+  "main": "server.cjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,7 +12,8 @@
     "tauri": "tauri",
     "start": "concurrently \"nodemon server/server.js\" \"npm run dev\" ",
     "server": "node server/server.js",
-    "package": "pkg package.json --target latest-win-x64 --output src-tauri/binaries/app && node scripts/move-binary.js"
+    "package": "node scripts/move-binary.js",
+    "test-package": "esbuild server/server.js --bundle --platform=node --format=cjs --outfile=server.cjs && nexe --build -o src-tauri/binaries/server.exe"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -39,6 +37,7 @@
     "mongoose": "^8.1.1",
     "mssql": "^10.0.2",
     "mysql2": "^3.9.1",
+    "pg-hstore": "^2.3.4",
     "pkg": "^5.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

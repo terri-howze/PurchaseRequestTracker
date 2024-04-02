@@ -25,8 +25,8 @@ export default function Dashboard() {
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     divdata.push(...axrequest.data)
     isNotLoading()
+    console.log(axrequest.data)
     setdepartmentState(division)
-    989887
 
   }
 
@@ -68,10 +68,15 @@ export default function Dashboard() {
     divdata.splice(0, divdata.length)
     const division = 53
     isLoading()
+    try{
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     divdata.push(...axrequest.data)
     isNotLoading()
     setdepartmentState(division)
+    }catch(err){
+      isNotLoading()
+      console.log("Request not successfu;")
+    }
   }
 
   return (

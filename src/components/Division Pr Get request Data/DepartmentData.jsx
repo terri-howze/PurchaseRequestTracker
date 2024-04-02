@@ -47,7 +47,7 @@ export default function DepartmentData(props) {
       {props.data.map((i) => {
         return (
           <div className='div_container'>
-            <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>
+            <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.username}</div>
           </div>
 
 
