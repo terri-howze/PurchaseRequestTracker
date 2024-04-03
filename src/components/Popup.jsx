@@ -21,7 +21,10 @@ export default function Popup(props) {
             Card Number: {props.data.cardNumber}<br />
             PR Amount: {props.data.purchaseRequestAmount}<br />
             Date of Purchase Request: {props.data.datePurchaseRequest}<br />
-            Last Updated: {props.data.updatedAt}
+            Last Updated: {props.data.updatedAt}<br />
+            Chris Approval: {props.data.chrisApproval}<br />
+            Jason Approval: {props.data.jasonApproval}<br />
+            Tonya Approval: {props.data.tonyaApproval}<br />
             <button className='update-btn' onClick={handleUpdate}>Update</button>
             <button className='delete-btn' onClick={handleDelete}>Delete</button>
             <button className='close-btn' onClick={() => props.setTrigger(false)}>Close</button>

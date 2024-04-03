@@ -13,68 +13,78 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 
 
 function Pr_Create() {
-    //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
-    const [prNumber, setprNumber] = useState()
-    const [department, setdepartment] = useState('0')
-    const cardType = "Amex";
-    const [purchaseRequestAmount, setAmount] = useState('0')
-    const [cardNumber, setCardNumber] = useState('0')
-    const [date, setDate] = useState("")
-    const mountSatte = useStateStore((state) => state.isMounted)
-    const falseMount = useStateStore((state) => state.flagFalse)
-    const divisionResults = useStateStore((state) => state.divisionResults)
-    const [chrisApproval, setChris] = useState(false)
-    const [JasonApproval, setJason] = useState(false)
-    const [tonyaApproval, setTonya] = useState(false)
+  //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
+  const [prNumber, setprNumber] = useState()
+  const [department, setdepartment] = useState('0')
+  const cardType = "Amex";
+  const [purchaseRequestAmount, setAmount] = useState('0')
+  const [cardNumber, setCardNumber] = useState('0')
+  const [date, setDate] = useState("")
+  const mountSatte = useStateStore((state) => state.isMounted)
+  const falseMount = useStateStore((state) => state.flagFalse)
+  const divisionResults = useStateStore((state) => state.divisionResults)
+  const [chrisApproval, setChris] = useState(false)
+  const [jasonApproval, setJason] = useState(false)
+  const [tonyaApproval, setTonya] = useState(false)
 
 
-    //Functions to handle submitting PR
-
-    //Function to change prNumber state to new prNumber input
-    const onNewPR = e =>{
-      setprNumber(e.target.value);
-    };
-    // Function to change department state to new department input
-    const onNewDepartment = e =>{
-      setdepartment(e.target.value);
-    };
-
-    // Function to change card number state to new card number input. will come back to handle encrypting(maybe)
-    const onNewCardNumber = e =>{
-      setCardNumber(e.target.value);
+  //Functions to handle submitting PR
+  const onChrisApprove = () => {
+    if (chrisApproval === true) {
+      setChris(false)
+    } else {
+      setChris(true)
     }
 
-    //Function to change purchaase request amount to new input state
-    const onNewPurchaseRequestAmount = e =>{
-        setAmount(e.target.value);
-    }
-  
-    // Function to handle submittal of Pr and save it
-    const handleSubmit = async(e) => {
-      const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
-      //setDate(date)
-      console.log(divisionResults)
-      const data = {
-        prNumber,
-        department,
-        cardType,
-        purchaseRequestAmount,
-        datePurchaseRequest,
-        cardNumber
-          };
-      axios.post('http://localhost:8080/PR/addPR', data)
-    
+  }
+  //Function to change prNumber state to new prNumber input
+  const onNewPR = e => {
+    setprNumber(e.target.value);
+  };
+
+  // Function to change department state to new department input
+  const onNewDepartment = e => {
+    setdepartment(e.target.value);
+  };
+
+  // Function to change card number state to new card number input. will come back to handle encrypting(maybe)
+  const onNewCardNumber = e => {
+    setCardNumber(e.target.value);
+  }
+
+  //Function to change purchaase request amount to new input state
+  const onNewPurchaseRequestAmount = e => {
+    setAmount(e.target.value);
+  }
+
+  // Function to handle submittal of Pr and save it
+  const handleSubmit = async (e) => {
+    const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
+    //setDate(date)
+    console.log(divisionResults)
+    const data = {
+      prNumber,
+      department,
+      cardType,
+      purchaseRequestAmount,
+      datePurchaseRequest,
+      cardNumber,
+
+    };
+    axios.post('http://localhost:8080/PR/addPR', data)
+    console.log(data)
+
     falseMount()
-    }
+  }
 
-    return (
-      <div className='form_box_flex'>
-        <p>
-          Form Submittal
-        </p>
+  return (
+    <div className='form_box_flex'>
+      <p>
+        Form Submittal
+      </p>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange = {onNewPR}></input>
-        <label for ="Department">Purchase Request</label>
+        <input type="text" onChange={onNewPR}></input>
+        <label for="Department">Purchase Request</label>
         <InputLabel id="department-label">Department</InputLabel>
         <Select
           id="department-label"
@@ -89,35 +99,19 @@ function Pr_Create() {
           <MenuItem value={52}>52</MenuItem>
           <MenuItem value={53}>53</MenuItem>
         </Select>
-        <label for ="Department">Purchase Request Amount</label>
-        <input type="text" onChange = {onNewPurchaseRequestAmount}></input>
-        <label for ="Department">Card Number</label>
-        <input type="text" onChange = {onNewCardNumber}></input> 
+        <label for="Department">Purchase Request Amount</label>
+        <input type="text" onChange={onNewPurchaseRequestAmount}></input>
+        <label for="Department">Card Number</label>
+        <input type="text" onChange={onNewCardNumber}></input>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-        onChange={(newValue) => {
-          setDate(newValue)
-        }} />
+          <DatePicker
+            onChange={(newValue) => {
+              setDate(newValue)
+            }} />
         </LocalizationProvider>
-        <br />
-        Chris Approval
-        <label class="switch">  
-        <input type="checkbox" id='chrisSwitch'/>
-        <span class="slider round"></span>
-      </label>
-      Jason Approval
-      <label class="switch">  
-        <input type="checkbox" id='jasonSwitch'/>
-        <span class="slider round"></span>
-      </label>
-      Tonya Approval
-      <label class="switch">
-        <input type="checkbox" id='tonyaSwitch'/>
-        <span class="slider round"></span>
-      </label>
       </form>
       <button onClick={handleSubmit}>Submit</button>
-      </div>
+    </div>
   )
 }
 

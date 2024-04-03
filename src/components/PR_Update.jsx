@@ -14,6 +14,15 @@ import { formatDate } from 'date-fns'
 
 
 function Pr_Update(props) {
+  if (props.data.chrisApproval === 1) {
+    document.getElementById(chrisSwitch).checked = true
+  }
+  if (props.data.jasonApproval === 1) {
+    document.getElementById(jasonSwitch).checked = true
+  }
+  if (props.data.tonyaApproval === 1) {
+    document.getElementById(tonyaSwitch).checked = true
+  }
   //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
   const formatDate = props.data.datePurchaseRequest.slice(0, 10)
   const [prNumber, setprNumber] = useState(props.data.prNumber)
@@ -22,12 +31,40 @@ function Pr_Update(props) {
   const [purchaseRequestAmount, setAmount] = useState(props.data.purchaseRequestAmount)
   const [cardNumber, setCardNumber] = useState(props.data.cardNumber)
   const [date, setDate] = useState(formatDate)
+  const [chrisApproval, setChris] = useState(props.data.chrisApproval)
+  const [jasonApproval, setJason] = useState(props.data.jasonApproval)
+  const [tonyaApproval, setTonya] = useState(props.data.tonyaApproval)
   const id = props.data.id
   // const mountSatte = useStateStore((state) => state.isMounted)
   // const falseMount = useStateStore((state) => state.flagFalse)
   // const divisionResults = useStateStore((state) => state.divisionResults)
   //Functions to handle submitting PR
+  const onChrisApprove = () => {
+    if (chrisApproval === 1) {
+      setChris(0)
+    } else {
+      setChris(1)
+    }
 
+  }
+
+  const onJasonApprove = () => {
+    if (jasonApproval === 1) {
+      setJason(0)
+    } else {
+      setJason(1)
+    }
+
+  }
+
+  const onTonyaApprove = () => {
+    if (tonyaApproval === 1) {
+      setTonya(0)
+    } else {
+      setTonya(1)
+    }
+
+  }
   //Function to change prNumber state to new prNumber input
   const onNewPR = e => {
     setprNumber(e.target.value);
@@ -62,7 +99,10 @@ function Pr_Update(props) {
       cardType,
       purchaseRequestAmount,
       datePurchaseRequest,
-      cardNumber
+      cardNumber,
+      chrisApproval,
+      jasonApproval,
+      tonyaApproval
     };
     console.log(data)
     await axios.post('http://localhost:8080/PR/updatePR', data,)
@@ -104,6 +144,22 @@ function Pr_Update(props) {
                     setDate(newValue)
                   }} />
               </LocalizationProvider>
+              <br />
+              Chris Approval
+              <label class="switch">
+                <input type="checkbox" id='chrisSwitch' onChange={onChrisApprove} />
+                <span class="slider round"></span>
+              </label>
+              Jason Approval
+              <label class="switch">
+                <input type="checkbox" id='jasonSwitch' onChange={onJasonApprove} />
+                <span class="slider round"></span>
+              </label>
+              Tonya Approval
+              <label class="switch">
+                <input type="checkbox" id='tonyaSwitch' onChange={onTonyaApprove} />
+                <span class="slider round"></span>
+              </label>
             </form>
             <button onClick={handleSubmit}>Submit</button>
             <button className='close-btn' onClick={() => props.setDisplay(false)}>Cancel</button>

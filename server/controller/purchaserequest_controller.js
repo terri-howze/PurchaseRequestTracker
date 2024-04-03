@@ -21,64 +21,22 @@ const purchaseRequest = async (req, res) => {
     }
 
   });
-  const purchaseRequest = sequelize.define('purchaseRequest', {
-    prNumber: {
-      type: DataTypes.CHAR,
-      allowNull: false
-    },
-    dep_num: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    cardType: {
-      type: DataTypes.CHAR,
-      allowNull: false
-    },
-    cardNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    datePurchaseRequest: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    purchaseRequestAmount: {
-      type: DataTypes.DECIMAL(19, 4),
-      allowNull: false
-    },
-    poNumber: {
-      type: DataTypes.CHAR,
-      allowNull: true
-    },
-    chrisApproval:{
-      type: DataTypes.BOOLEAN,
-      allowNull: True
-    },
-    jasonApproval:{
-      type: DataTypes.BOOLEAN,
-      allowNull: True
-    },
-    tonyaApproval:{
-      type: DataTypes.BOOLEAN,
-      allowNull: True
-    }
-  }, {
-    freezeTableName: true
-  })
 
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
-    const prrequest = await purchaseRequest.create({
+    await addPurchaseRequest.create({
       prNumber: req.body.prNumber,
       dep_num: req.body.department,
       cardType: req.body.cardType,
       cardNumber: req.body.cardNumber,
       datePurchaseRequest: req.body.datePurchaseRequest,
-      purchaseRequestAmount: req.body.purchaseRequestAmount
+      purchaseRequestAmount: req.body.purchaseRequestAmount,
+      chrisApproval: false,
+      jasonApproval: false,
+      tonyaApproval: false
     })
-    console.log(req.body)
 
   } catch (err) {
     console.log(err)
@@ -104,6 +62,7 @@ const getDep20prs = async (req, res) => {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
+
     console.log(req.query.data)
     const results = await addPurchaseRequest.findAll({
       where: {
@@ -160,50 +119,20 @@ const updatePurchaseRequest = async (req, res) => {
     }
 
   });
-  const purchaseRequest = sequelize.define('purchaseRequest', {
-    prNumber: {
-      type: DataTypes.CHAR,
-      allowNull: false
-    },
-    dep_num: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    cardType: {
-      type: DataTypes.CHAR,
-      allowNull: false
-    },
-    cardNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    datePurchaseRequest: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    purchaseRequestAmount: {
-      type: DataTypes.DECIMAL(19, 4),
-      allowNull: false
-    },
-    poNumber: {
-      type: DataTypes.CHAR,
-      allowNull: true
-    }
-  }, {
-    freezeTableName: true
-  })
-
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
-    await purchaseRequest.update({
+    await addPurchaseRequest.update({
       prNumber: req.body.prNumber,
       dep_num: req.body.department,
       cardType: req.body.cardType,
       cardNumber: req.body.cardNumber,
       datePurchaseRequest: req.body.datePurchaseRequest,
-      purchaseRequestAmount: req.body.purchaseRequestAmount
+      purchaseRequestAmount: req.body.purchaseRequestAmount,
+      chrisApproval: req.body.chrisApproval,
+      jasonApproval: req.body.jasonApproval,
+      tonyaApproval: req.body.tonyaApproval
     }, {
       where: {
         id: req.body.id
@@ -228,44 +157,11 @@ const deletePurchaseRequest = async (req, res) => {
     }
 
   });
-  const purchaseRequest = sequelize.define('purchaseRequest', {
-    prNumber: {
-      type: DataTypes.CHAR,
-      allowNull: false
-    },
-    dep_num: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    cardType: {
-      type: DataTypes.CHAR,
-      allowNull: false
-    },
-    cardNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    datePurchaseRequest: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    purchaseRequestAmount: {
-      type: DataTypes.DECIMAL(19, 4),
-      allowNull: false
-    },
-    poNumber: {
-      type: DataTypes.CHAR,
-      allowNull: true
-    }
-  }, {
-    freezeTableName: true
-  })
-
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
-    await purchaseRequest.destroy({
+    await addPurchaseRequest.destroy({
       where: {
         id: req.query.data
       }

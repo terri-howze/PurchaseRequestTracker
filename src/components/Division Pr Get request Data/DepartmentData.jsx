@@ -22,7 +22,10 @@ export default function DepartmentData(props) {
     poNumber: "",
     prNumber: "",
     purchaseRequestAmount: 0,
-    updatedAt: ""
+    updatedAt: "",
+    chrisApproval: 0,
+    jasonApproval: 0,
+    tonyaApproval: 0
 
   })
   const handleSubmit = (i) => {
@@ -38,7 +41,10 @@ export default function DepartmentData(props) {
       poNumber: i.poNumber,
       prNumber: i.prNumber,
       purchaseRequestAmount: i.purchaseRequestAmount,
-      updatedAt: i.updatedAt
+      updatedAt: i.updatedAt,
+      chrisApproval: i.chrisApproval,
+      jasonApproval: i.jasonApproval,
+      tonyaApproval: i.tonyaApproval
     })
     setTrigger(true)
   }
@@ -47,7 +53,7 @@ export default function DepartmentData(props) {
       {props.data.map((i) => {
         return (
           <div className='div_container'>
-            <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.username}</div>
+            <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>
           </div>
 
 

@@ -13,7 +13,8 @@
     "start": "concurrently \"nodemon server/server.js\" \"npm run dev\" ",
     "server": "node server/server.js",
     "package": "node scripts/move-binary.js",
-    "test-package": "esbuild server/server.js --bundle --platform=node --format=cjs --outfile=server.cjs && nexe --build -o src-tauri/binaries/server.exe"
+    "test-package": "esbuild server/server.js --bundle --platform=node --format=cjs --outfile=server.cjs",
+    "nexeBuild": "nexe --build -o src-tauri/binaries/server.exe"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
