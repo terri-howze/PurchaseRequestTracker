@@ -109,7 +109,7 @@ const searchBar = async (req, res) => {
 
 const updatePurchaseRequest = async (req, res) => {
   console.log("made it to controller")
-
+  
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
@@ -123,10 +123,12 @@ const updatePurchaseRequest = async (req, res) => {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
+    
     await addPurchaseRequest.update({
       prNumber: req.body.prNumber,
       dep_num: req.body.department,
       cardType: req.body.cardType,
+      poNumber: poNumber,
       cardNumber: req.body.cardNumber,
       datePurchaseRequest: req.body.datePurchaseRequest,
       purchaseRequestAmount: req.body.purchaseRequestAmount,

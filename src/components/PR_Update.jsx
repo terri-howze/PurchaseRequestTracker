@@ -14,15 +14,6 @@ import { formatDate } from 'date-fns'
 
 
 function Pr_Update(props) {
-  if (props.data.chrisApproval === 1) {
-    document.getElementById(chrisSwitch).checked = true
-  }
-  if (props.data.jasonApproval === 1) {
-    document.getElementById(jasonSwitch).checked = true
-  }
-  if (props.data.tonyaApproval === 1) {
-    document.getElementById(tonyaSwitch).checked = true
-  }
   //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
   const formatDate = props.data.datePurchaseRequest.slice(0, 10)
   const [prNumber, setprNumber] = useState(props.data.prNumber)
@@ -35,33 +26,63 @@ function Pr_Update(props) {
   const [jasonApproval, setJason] = useState(props.data.jasonApproval)
   const [tonyaApproval, setTonya] = useState(props.data.tonyaApproval)
   const id = props.data.id
+
+  //Text thats shows Approved or not Approved for each approver
+  //const [chrisApproveText, setChrisApproved] = useState("")
+  
+  let chrisApprovedText = ""
+  let jasonApprovedText = ""
+  let tonyaApprovedText = ""
+  //set initial state of the approve texts
+    if(chrisApproval === true){
+      chrisApprovedText = "Approved"
+    }else{
+      chrisApprovedText = "Not Approved"
+    }
+
+    if(jasonApproval === true){
+      jasonApprovedText = "Approved"
+    }else{
+      jasonApprovedText = "Not Approved"
+
+    }if(tonyaApproval === true){
+      tonyaApprovedText = "Approved"
+    }else{
+      tonyaApprovedText = "Not Approved"
+    }
+  //approveText()
+
   // const mountSatte = useStateStore((state) => state.isMounted)
   // const falseMount = useStateStore((state) => state.flagFalse)
   // const divisionResults = useStateStore((state) => state.divisionResults)
   //Functions to handle submitting PR
-  const onChrisApprove = () => {
-    if (chrisApproval === 1) {
-      setChris(0)
+
+  const onChrisApprove = (e) => {
+    e.preventDefault()
+    if (chrisApproval === true) {
+      setChris(false)
     } else {
-      setChris(1)
+      setChris(true)
     }
 
   }
 
   const onJasonApprove = () => {
-    if (jasonApproval === 1) {
-      setJason(0)
+    e.preventDefault()
+    if (jasonApproval === true) {
+      setJason(false)
     } else {
-      setJason(1)
+      setJason(true)
     }
 
   }
 
   const onTonyaApprove = () => {
-    if (tonyaApproval === 1) {
-      setTonya(0)
+    e.preventDefault()
+    if (tonyaApproval === true) {
+      setTonya(false)
     } else {
-      setTonya(1)
+      setTonya(true)
     }
 
   }
@@ -144,22 +165,18 @@ function Pr_Update(props) {
                     setDate(newValue)
                   }} />
               </LocalizationProvider>
-              <br />
-              Chris Approval
-              <label class="switch">
-                <input type="checkbox" id='chrisSwitch' onChange={onChrisApprove} />
-                <span class="slider round"></span>
-              </label>
-              Jason Approval
-              <label class="switch">
-                <input type="checkbox" id='jasonSwitch' onChange={onJasonApprove} />
-                <span class="slider round"></span>
-              </label>
-              Tonya Approval
-              <label class="switch">
-                <input type="checkbox" id='tonyaSwitch' onChange={onTonyaApprove} />
-                <span class="slider round"></span>
-              </label>
+              <div>
+              Chris: {chrisApprovedText}
+                <button id='chrisSwitch' onClick={onChrisApprove}>Change</button>
+              </div>
+              <div>
+              Jason: {jasonApprovedText}
+                <button id='jasonSwitch' onClick={onJasonApprove}>Change</button>
+              </div>
+              <div>
+              Tonya: {tonyaApprovedText}
+                <button id='tonyaSwitch' onClick={onTonyaApprove}>Change</button>
+              </div>
             </form>
             <button onClick={handleSubmit}>Submit</button>
             <button className='close-btn' onClick={() => props.setDisplay(false)}>Cancel</button>
@@ -169,6 +186,8 @@ function Pr_Update(props) {
     </>
   )
 }
+
+
 
 
 export default Pr_Update

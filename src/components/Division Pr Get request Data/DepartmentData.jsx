@@ -23,9 +23,9 @@ export default function DepartmentData(props) {
     prNumber: "",
     purchaseRequestAmount: 0,
     updatedAt: "",
-    chrisApproval: 0,
-    jasonApproval: 0,
-    tonyaApproval: 0
+    chrisApproval: false,
+    jasonApproval: false,
+    tonyaApproval: false
 
   })
   const handleSubmit = (i) => {

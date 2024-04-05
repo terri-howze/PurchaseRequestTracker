@@ -27,16 +27,6 @@ function Pr_Create() {
   const [jasonApproval, setJason] = useState(false)
   const [tonyaApproval, setTonya] = useState(false)
 
-
-  //Functions to handle submitting PR
-  const onChrisApprove = () => {
-    if (chrisApproval === true) {
-      setChris(false)
-    } else {
-      setChris(true)
-    }
-
-  }
   //Function to change prNumber state to new prNumber input
   const onNewPR = e => {
     setprNumber(e.target.value);
