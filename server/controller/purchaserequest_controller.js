@@ -5,6 +5,7 @@ import mysql from 'mysql2/promise';
 import sql from "mssql";
 import { Sequelize, DataTypes, where } from "sequelize";
 import addPurchaseRequest from "../models/purchaserequest_model.js";
+import purchaseOrderGenerator from "./purchaseOrdergenerator.js";
 
 
 
@@ -109,7 +110,7 @@ const searchBar = async (req, res) => {
 
 const updatePurchaseRequest = async (req, res) => {
   console.log("made it to controller")
-  
+
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
@@ -123,12 +124,12 @@ const updatePurchaseRequest = async (req, res) => {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
-    
+
     await addPurchaseRequest.update({
       prNumber: req.body.prNumber,
       dep_num: req.body.department,
       cardType: req.body.cardType,
-      poNumber: poNumber,
+      poNumber: req.body.poNumber,
       cardNumber: req.body.cardNumber,
       datePurchaseRequest: req.body.datePurchaseRequest,
       purchaseRequestAmount: req.body.purchaseRequestAmount,
@@ -141,8 +142,7 @@ const updatePurchaseRequest = async (req, res) => {
       }
     }
     )
-    console.log(req.body)
-
+    const purchaseOrder = await purchaseOrderGenerator(req)
   } catch (err) {
     console.log(err)
   }

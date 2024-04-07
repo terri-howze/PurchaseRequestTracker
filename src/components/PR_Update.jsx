@@ -29,27 +29,27 @@ function Pr_Update(props) {
 
   //Text thats shows Approved or not Approved for each approver
   //const [chrisApproveText, setChrisApproved] = useState("")
-  
+
   let chrisApprovedText = ""
   let jasonApprovedText = ""
   let tonyaApprovedText = ""
   //set initial state of the approve texts
-    if(chrisApproval === true){
-      chrisApprovedText = "Approved"
-    }else{
-      chrisApprovedText = "Not Approved"
-    }
+  if (chrisApproval === true) {
+    chrisApprovedText = "Approved"
+  } else {
+    chrisApprovedText = "Not Approved"
+  }
 
-    if(jasonApproval === true){
-      jasonApprovedText = "Approved"
-    }else{
-      jasonApprovedText = "Not Approved"
+  if (jasonApproval === true) {
+    jasonApprovedText = "Approved"
+  } else {
+    jasonApprovedText = "Not Approved"
 
-    }if(tonyaApproval === true){
-      tonyaApprovedText = "Approved"
-    }else{
-      tonyaApprovedText = "Not Approved"
-    }
+  } if (tonyaApproval === true) {
+    tonyaApprovedText = "Approved"
+  } else {
+    tonyaApprovedText = "Not Approved"
+  }
   //approveText()
 
   // const mountSatte = useStateStore((state) => state.isMounted)
@@ -58,7 +58,6 @@ function Pr_Update(props) {
   //Functions to handle submitting PR
 
   const onChrisApprove = (e) => {
-    e.preventDefault()
     if (chrisApproval === true) {
       setChris(false)
     } else {
@@ -68,7 +67,6 @@ function Pr_Update(props) {
   }
 
   const onJasonApprove = () => {
-    e.preventDefault()
     if (jasonApproval === true) {
       setJason(false)
     } else {
@@ -78,7 +76,6 @@ function Pr_Update(props) {
   }
 
   const onTonyaApprove = () => {
-    e.preventDefault()
     if (tonyaApproval === true) {
       setTonya(false)
     } else {
@@ -111,6 +108,7 @@ function Pr_Update(props) {
 
   // Function to handle submittal of Pr and save it
   const handleSubmit = async (e) => {
+
     const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
     //setDate(date)
     const data = {
@@ -166,16 +164,16 @@ function Pr_Update(props) {
                   }} />
               </LocalizationProvider>
               <div>
-              Chris: {chrisApprovedText}
-                <button id='chrisSwitch' onClick={onChrisApprove}>Change</button>
+                Chris: {chrisApprovedText}
+                <button type="button" id='chrisSwitch' onClick={onChrisApprove}>Change</button>
               </div>
               <div>
-              Jason: {jasonApprovedText}
-                <button id='jasonSwitch' onClick={onJasonApprove}>Change</button>
+                Jason: {jasonApprovedText}
+                <button type="button" id='jasonSwitch' onClick={onJasonApprove}>Change</button>
               </div>
               <div>
-              Tonya: {tonyaApprovedText}
-                <button id='tonyaSwitch' onClick={onTonyaApprove}>Change</button>
+                Tonya: {tonyaApprovedText}
+                <button type="button" id='tonyaSwitch' onClick={onTonyaApprove}>Change</button>
               </div>
             </form>
             <button onClick={handleSubmit}>Submit</button>

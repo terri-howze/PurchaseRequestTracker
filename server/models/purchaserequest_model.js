@@ -58,4 +58,4 @@ const addPurchaseRequest = sequelize.define('purchaseRequest', {
   freezeTableName: true
 })
 
-export {addPurchaseRequest, sequelize};
+export default addPurchaseRequest
