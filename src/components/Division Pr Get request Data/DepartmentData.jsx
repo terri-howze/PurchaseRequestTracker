@@ -10,7 +10,7 @@ bouncy.register()
 
 export default function DepartmentData(props) {
   const departmentState = useStateStore((state) => state.division)
-  const divisionResults = useStateStore((state) => state.divisionResults)
+  const divresultsarr = useStateStore((state) => state.divresultsarr)
   const [trigger, setTrigger] = useState(false)
   const [divdata, getData] = useState({
     cardNumber: 0,
@@ -50,7 +50,7 @@ export default function DepartmentData(props) {
   }
   return (
     <>
-      {props.data.map((i) => {
+      {divresultsarr.map((i) => {
         return (
           <div className='div_container'>
             <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>

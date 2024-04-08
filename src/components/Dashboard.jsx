@@ -12,32 +12,39 @@ export default function Dashboard() {
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
   const departmentState = useStateStore((state) => state.division)
-
+  const addDivisionData = useStateStore((state) => state.addDivisionData)
+  const clearDivisionData = useStateStore((state) => state.clearDivisionData)
   const Loading = useStateStore((state) => state.loading)
   const isLoading = useStateStore((state) => state.flagLoadingTrue)
   const isNotLoading = useStateStore((state) => state.flagLoadingFalse)
 
   ///////////////Division 20 pull requests /////////////////////////
   const getTwentyData = async () => {
-    divdata.splice(0, divresultsarr.length)
+    clearDivisionData()
     const division = 20
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
-    divdata.push(...axrequest.data)
+    //divdata.push(...axrequest.data)
+    addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
+    
     isNotLoading()
     setdepartmentState(division)
+    console.log(divresultsarr)
 
   }
 
   ///////////////Division 50 pull requests /////////////////////////
   const getFiftyData = async () => {
-    divdata.splice(0, divdata.length)
+    clearDivisionData()
     const division = 50
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
-    divdata.push(...axrequest.data)
+    //divdata.push(...axrequest.data)
+    addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
+    
     isNotLoading()
     setdepartmentState(division)
+    console.log(divresultsarr)
   }
 
   ///////////////Division 51 pull requests /////////////////////////

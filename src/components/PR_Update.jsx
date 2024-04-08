@@ -28,6 +28,7 @@ function Pr_Update(props) {
   const id = props.data.id
   const poNumber = props.data.poNumber
   const divresultsarr = useStateStore((state) => state.divresultsarr)
+  const addDivisionData = useStateStore((state) => state.addDivisionData)
 
 
   //Text thats shows Approved or not Approved for each approver
@@ -128,7 +129,10 @@ function Pr_Update(props) {
       tonyaApproval,
       poNumber
     };
-    await axios.post('http://localhost:8080/PR/updatePR', data,).then(props.setDisplay(false))
+    await axios.post('http://localhost:8080/PR/updatePR', data,)
+    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
+    addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
+    .then(props.setDisplay(false))
     
   }
 
