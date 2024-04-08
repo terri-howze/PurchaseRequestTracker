@@ -71,7 +71,6 @@ const getDep20prs = async (req, res) => {
       },
 
     })
-    console.log(results)
     return results
   } catch (err) {
     console.log(err)
@@ -142,7 +141,17 @@ const updatePurchaseRequest = async (req, res) => {
       }
     }
     )
-    const purchaseOrder = await purchaseOrderGenerator(req)
+    if(req.body.poNumber === null){
+      const purchaseOrder = await purchaseOrderGenerator(req)
+      await addPurchaseRequest.update({
+        poNumber: purchaseOrder
+      }, {
+        where: {
+          id: req.body.id
+        }
+      }
+      )
+    }
   } catch (err) {
     console.log(err)
   }

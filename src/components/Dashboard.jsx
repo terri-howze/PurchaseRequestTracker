@@ -9,7 +9,7 @@ import DivisionList from './DivisionList'
 
 export default function Dashboard() {
   const [divdata, getData] = useState([])
-  const arr = []
+  const divresultsarr = useStateStore((state) => state.divresultsarr)
   const setdepartmentState = useStateStore((state) => state.setDepartmentStore)
   const departmentState = useStateStore((state) => state.division)
 
@@ -19,13 +19,12 @@ export default function Dashboard() {
 
   ///////////////Division 20 pull requests /////////////////////////
   const getTwentyData = async () => {
-    divdata.splice(0, divdata.length)
+    divdata.splice(0, divresultsarr.length)
     const division = 20
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     divdata.push(...axrequest.data)
     isNotLoading()
-    console.log(axrequest.data)
     setdepartmentState(division)
 
   }
@@ -68,15 +67,10 @@ export default function Dashboard() {
     divdata.splice(0, divdata.length)
     const division = 53
     isLoading()
-    try{
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     divdata.push(...axrequest.data)
     isNotLoading()
     setdepartmentState(division)
-    }catch(err){
-      isNotLoading()
-      console.log("Request not successfu;")
-    }
   }
 
   return (

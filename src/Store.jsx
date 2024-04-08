@@ -11,6 +11,7 @@ export const useStateStore = create((set) => ({
     division: 0,
     isMounted: false,
     loading: false,
+    divresultsarr:[],
 
 
     flagTrue: () => set({ isMounted: true}),
@@ -19,5 +20,9 @@ export const useStateStore = create((set) => ({
     resetDepartmentStore: () => set({division: 0}),
     flagLoadingTrue: () => set({ loading: true}),
     flagLoadingFalse: () => set({ loading: false}),
+    addDivisionData:(data) => set(state => {
+        state.divresultsarr.push(...data)
+      }),
+    clearDivisionData: () => set({divresultsarr:[]})
 
 }))

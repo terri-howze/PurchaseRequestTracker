@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { Sequelize, DataTypes, where } from "sequelize";
 import addPurchaseRequest from "../models/purchaserequest_model.js";
 import sequelize from "../models/sequelizeModel.js";
-
+import {Op} from "sequelize";
 
 const purchaseOrderGenerator = async (req) => {
   const year = dayjs(req.body.datePurchaseRequest).format('YYYY')
@@ -18,15 +18,16 @@ const purchaseOrderGenerator = async (req) => {
     const results = await addPurchaseRequest.findAll({
       where: {
         dep_num: req.body.department,
-        datePurchaseRequest: req.body.datePurchaseRequest
+        datePurchaseRequest: req.body.datePurchaseRequest,
+        poNumber:{
+            [Op.not]: null
+        }
       }
     })
     console.log(results.length)
-    console
-    const resultslength = results.length
+    const resultslength = results.length + 1
     if (req.body.chrisApproval && req.body.jasonApproval && req.body.tonyaApproval == true) {
       let purchaseorderNumber = year + "." + daymonth + "." + req.body.department + "." + resultslength
-      console.log(purchaseorderNumber)
       return purchaseorderNumber
     }
 

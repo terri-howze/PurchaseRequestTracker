@@ -26,6 +26,9 @@ function Pr_Update(props) {
   const [jasonApproval, setJason] = useState(props.data.jasonApproval)
   const [tonyaApproval, setTonya] = useState(props.data.tonyaApproval)
   const id = props.data.id
+  const poNumber = props.data.poNumber
+  const divresultsarr = useStateStore((state) => state.divresultsarr)
+
 
   //Text thats shows Approved or not Approved for each approver
   //const [chrisApproveText, setChrisApproved] = useState("")
@@ -111,6 +114,7 @@ function Pr_Update(props) {
 
     const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
     //setDate(date)
+    console.log(divresultsarr)
     const data = {
       id,
       prNumber,
@@ -121,10 +125,11 @@ function Pr_Update(props) {
       cardNumber,
       chrisApproval,
       jasonApproval,
-      tonyaApproval
+      tonyaApproval,
+      poNumber
     };
-    console.log(data)
-    await axios.post('http://localhost:8080/PR/updatePR', data,)
+    await axios.post('http://localhost:8080/PR/updatePR', data,).then(props.setDisplay(false))
+    
   }
 
   return (

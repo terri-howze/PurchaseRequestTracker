@@ -17,7 +17,7 @@ app.use(router);
 
 
 app.get('/', (req,res) =>{
-    res.sendFile(resolve('./src/Main.js'))
+    res.sendFile(resolve('./src/main.jsx'))
 }) 
 
 app.listen(port, () =>{
