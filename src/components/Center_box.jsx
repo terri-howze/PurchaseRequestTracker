@@ -5,20 +5,30 @@ import Dashboard from './Dashboard'
 
 
 export default function Center_box() {
-const mountSatte = useStateStore((state) => state.isMounted)
+  const isPrCreateMounted = useStateStore((state) => state.isPrCreateMounted)
+  const isDashboardMounted = useStateStore((state) => state.isDashboardMounted)
 
 
   return (
     <>
-    <div className='center_box_flex'>
-    {mountSatte ? (
-        <Pr_Create />
-      ) : (
-        <Dashboard />
-      )}
+      <div className='center_box_flex'>
+        {isPrCreateMounted ? (
+          <Pr_Create />
+        ) : (
+          ""
+        )}
 
-      
-    </div>
+
+      </div>
+      <div className='center_box_flex'>
+        {isDashboardMounted ? (
+          <Dashboard />
+        ) : (
+          ""
+        )}
+
+
+      </div>
     </>
   )
 }

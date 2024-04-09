@@ -9,18 +9,39 @@ import { create, createStore } from "zustand";
 2
 export const useStateStore = create((set) => ({
     division: 0,
-    isMounted: false,
+    setDepartmentStore: (departmentID) => set({ division: departmentID }),
+    resetDepartmentStore: () => set({ division: 0 }),
+
+    /*
+    mount state for Pr_Create Component
+    */
+    isPrCreateMounted: false,
+    flagTrue: () => set({ isPrCreateMounted: true }),
+    flagFalse: () => set({ isPrCreateMounted: false }),
+    // end of Pr Create mount state and actions
+
+    /*
+   mount state for Dashboard Component
+   */
+    isDashboardMounted: false,
+    flagDashboardTrue: () => set({ isDashboardMounted: true }),
+    flagDashboardFalse: () => set({ isDashboardMounted: false }),
+    // end of Dashboard mount state and actions
+
+    /*
+    mount state for loading animation
+    */
     loading: false,
-    divresultsarr:[],
+    flagLoadingTrue: () => set({ loading: true }),
+    flagLoadingFalse: () => set({ loading: false }),
+    //end of loading animation mount and actions
 
 
-    flagTrue: () => set({ isMounted: true}),
-    flagFalse: () => set({ isMounted: false}),
-    setDepartmentStore: (departmentID) => set({division: departmentID}),
-    resetDepartmentStore: () => set({division: 0}),
-    flagLoadingTrue: () => set({ loading: true}),
-    flagLoadingFalse: () => set({ loading: false}),
-    addDivisionData:(newArr) => set({divresultsarr: newArr}),
-    clearDivisionData: () => set({divresultsarr:[]})
+    /*
+   Get request data for whichever department is selected 
+   */
+    divresultsarr: [],
+    addDivisionData: (newArr) => set({ divresultsarr: newArr }),
+    clearDivisionData: () => set({ divresultsarr: [] })
 
 }))

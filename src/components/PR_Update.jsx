@@ -130,10 +130,9 @@ function Pr_Update(props) {
       poNumber
     };
     await axios.post('http://localhost:8080/PR/updatePR', data,)
-    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
-    addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
-    .then(props.setDisplay(false))
-    
+
+      .then(props.setDisplay(false))
+
   }
 
   return (
