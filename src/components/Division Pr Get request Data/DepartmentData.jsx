@@ -6,7 +6,7 @@ import Popup from '../Popup'
 import Pagination from '../Pagination'
 bouncy.register()
 
-// Default values shown
+// Default values shown 
 
 
 export default function DepartmentData(props) {
@@ -14,22 +14,7 @@ export default function DepartmentData(props) {
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const [trigger, setTrigger] = useState(false)
   const pageLimit = 2
-  const [pagePeople, setPagePeople] = useState({
-    cardNumber: 0,
-    cardType: "",
-    createdAt: "",
-    datePurchaseRequest: "",
-    dep_num: 0,
-    id: 0,
-    poNumber: "",
-    prNumber: "",
-    purchaseRequestAmount: 0,
-    updatedAt: "",
-    chrisApproval: false,
-    jasonApproval: false,
-    tonyaApproval: false
-
-  });
+  
   const [divdata, getData] = useState({
     cardNumber: 0,
     cardType: "",
@@ -68,7 +53,7 @@ export default function DepartmentData(props) {
   }
   return (
     <>
-      {divresultsarr.map((i) => {
+      {/* {divresultsarr.map((i) => {
         return (
           <div className='div_container'>
             <div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>
@@ -80,14 +65,13 @@ export default function DepartmentData(props) {
       }
       )
 
-      }
+      } */}
       {/* {pagePeople.map((person, i) => (
         <ul key={i}>{person}</ul>
       ))} */}
       <Pagination
-        items={divresultsarr}
-        pageLimit={pageLimit}
-        setPageItems={setPagePeople}
+        data={divresultsarr}
+        itemsPerPage={pageLimit}
       />
       <div>
         {trigger ? <Popup trigger={trigger} setTrigger={setTrigger} data={divdata} />
