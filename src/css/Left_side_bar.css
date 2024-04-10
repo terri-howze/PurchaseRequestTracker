@@ -1,17 +1,17 @@
 .sidebar_setup {
-    height: 100vh;
-    width: 300px;
-    background-color: #253646;
-  }
+  height: 100vh;
+  width: 600px;
+  background-color: #253646;
+}
 
-  .left_sidebar_flex_div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.left_sidebar_flex_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-.icon_text_flex{
+.icon_text_flex {
   display: flex;
   flex-direction: row;
 }
