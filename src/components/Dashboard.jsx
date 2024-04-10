@@ -43,8 +43,9 @@ export default function Dashboard() {
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
 
     isNotLoading()
-    setdepartmentState(division)
     console.log(divresultsarr)
+    setdepartmentState(division)
+
   }
 
   ///////////////Division 51 pull requests /////////////////////////

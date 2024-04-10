@@ -3,6 +3,7 @@ import '../../css/DepartmentData.css'
 import { bouncy } from 'ldrs'
 import { useState } from 'react'
 import Popup from '../Popup'
+import Pagination from '../Pagination'
 bouncy.register()
 
 // Default values shown
@@ -12,6 +13,23 @@ export default function DepartmentData(props) {
   const departmentState = useStateStore((state) => state.division)
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const [trigger, setTrigger] = useState(false)
+  const pageLimit = 2
+  const [pagePeople, setPagePeople] = useState({
+    cardNumber: 0,
+    cardType: "",
+    createdAt: "",
+    datePurchaseRequest: "",
+    dep_num: 0,
+    id: 0,
+    poNumber: "",
+    prNumber: "",
+    purchaseRequestAmount: 0,
+    updatedAt: "",
+    chrisApproval: false,
+    jasonApproval: false,
+    tonyaApproval: false
+
+  });
   const [divdata, getData] = useState({
     cardNumber: 0,
     cardType: "",
@@ -63,6 +81,14 @@ export default function DepartmentData(props) {
       )
 
       }
+      {/* {pagePeople.map((person, i) => (
+        <ul key={i}>{person}</ul>
+      ))} */}
+      <Pagination
+        items={divresultsarr}
+        pageLimit={pageLimit}
+        setPageItems={setPagePeople}
+      />
       <div>
         {trigger ? <Popup trigger={trigger} setTrigger={setTrigger} data={divdata} />
           : ""
