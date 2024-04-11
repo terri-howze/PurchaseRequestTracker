@@ -5,6 +5,7 @@ import Center_box from './components/Center_box'
 import Left_side_bar from './components/Left_Side_Bar'
 import Flexbox from './components/Flexbox';
 import Header from './components/Header';
+import Table from './components/Table'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -12,14 +13,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 function App() {
   return (
     <>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Header />
-    <Flexbox>
-      <Left_side_bar />
-      <Center_box />
-      <Right_side_bar />
-    </Flexbox>
-    </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Header />
+        <Flexbox>
+          <Left_side_bar />
+          <Center_box />
+          <Right_side_bar />
+        </Flexbox>
+      </LocalizationProvider>
     </>
   )
 }

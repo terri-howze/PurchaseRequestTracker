@@ -1,0 +1,9 @@
+.box_div {
+    width: 1250px;
+    height: 400px;
+    bottom: 0;
+    position: absolute;
+    background-color: white;
+    margin-bottom: 50px;
+    margin-left: 150px
+}

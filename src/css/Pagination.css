@@ -1,6 +1,22 @@
-.pagination_div{
-    width: 200px;
-    height: 200px;
-    position: absolute;
+.pagination_div {}
+
+.div_table {
+    border-spacing: 10px;
+}
+
+.page_buttons {
     bottom: 0;
+    position: absolute;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }

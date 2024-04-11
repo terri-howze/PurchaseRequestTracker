@@ -2,6 +2,7 @@ import '../css/Center_box.css'
 import { useStateStore } from '../Store'
 import Pr_Create from './Pr_Create'
 import Dashboard from './Dashboard'
+import Table from './Table'
 
 
 export default function Center_box() {
@@ -29,6 +30,7 @@ export default function Center_box() {
 
 
       </div>
+      <Table />
     </>
   )
 }

@@ -14,7 +14,7 @@ export default function DepartmentData(props) {
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const [trigger, setTrigger] = useState(false)
   const pageLimit = 2
-  
+
   const [divdata, getData] = useState({
     cardNumber: 0,
     cardType: "",
@@ -66,13 +66,6 @@ export default function DepartmentData(props) {
       )
 
       } */}
-      {/* {pagePeople.map((person, i) => (
-        <ul key={i}>{person}</ul>
-      ))} */}
-      <Pagination
-        data={divresultsarr}
-        itemsPerPage={pageLimit}
-      />
       <div>
         {trigger ? <Popup trigger={trigger} setTrigger={setTrigger} data={divdata} />
           : ""
