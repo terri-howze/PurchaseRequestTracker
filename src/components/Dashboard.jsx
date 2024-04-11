@@ -106,7 +106,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div>
-        {Loading ? <l-bouncy size="150" speed="1.75" color="black"> </l-bouncy>
+        {Loading ? <p>Loading...</p>
           : <DepartmentData data={divdata} />
         }
         {/* {divdata.map((i) =>{

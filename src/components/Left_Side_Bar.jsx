@@ -29,6 +29,7 @@ function Left_side_bar() {
     prCreateFlagFalse()
     flagDashboardTrue()
   }
+  spawnserver()
   return (
     <>
       <div className='sidebar_setup'>
