@@ -141,7 +141,7 @@ const updatePurchaseRequest = async (req, res) => {
       }
     }
     )
-    if(req.body.poNumber === null){
+    if (req.body.poNumber === null) {
       const purchaseOrder = await purchaseOrderGenerator(req)
       await addPurchaseRequest.update({
         poNumber: purchaseOrder

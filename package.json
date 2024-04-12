@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "server.cjs",
+  "main": "server.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,6 +14,7 @@
     "server": "node server/server.js",
     "package": "node scripts/move-binary.js",
     "test-package": "esbuild server/server.js --bundle --platform=node --format=cjs --outfile=server.cjs",
+    "test2": "esbuild server/server.js --bundle --platform=node --outfile=server.js",
     "nexeBuild": "nexe --build -o src-tauri/binaries/server.exe"
   },
   "dependencies": {
