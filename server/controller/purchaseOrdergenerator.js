@@ -1,8 +1,8 @@
 import 'dotenv/config'
-import {dayjs} from 'dayjs'
+import dayjs from 'dayjs'
 import { Sequelize, DataTypes, where } from "sequelize";
 import addPurchaseRequest from "../models/purchaserequest_model.js";
-import {Op} from "sequelize";
+import { Op } from "sequelize";
 
 const purchaseOrderGenerator = async (req) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
@@ -12,7 +12,7 @@ const purchaseOrderGenerator = async (req) => {
     dialectOptions: {
       options: { "requestTimeout": 300000 }
     }
-  
+
   });
   const year = dayjs(req.body.datePurchaseRequest).format('YYYY')
   console.log(year)
@@ -26,8 +26,8 @@ const purchaseOrderGenerator = async (req) => {
       where: {
         dep_num: req.body.department,
         datePurchaseRequest: req.body.datePurchaseRequest,
-        poNumber:{
-            [Op.not]: null
+        poNumber: {
+          [Op.not]: null
         }
       }
     })

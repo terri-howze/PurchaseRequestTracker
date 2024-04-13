@@ -13,11 +13,11 @@ function Left_side_bar() {
   const flagDashboardFalse = useStateStore((state) => state.flagDashboardFalse)
   const clearDivisionData = useStateStore((state) => state.clearDivisionData)
 
-  // const spawnserver = async () => {
-  //   const command = Command.sidecar('binaries/server-x86_64-pc-windows-msvc.exe')
-  //   const output = await command.execute()
-  //   console.log("success")
-  // }
+  const spawnserver = async () => {
+    const command = Command.sidecar('../../server')
+    const output = await command.execute()
+    console.log("success")
+  }
 
   const prCreateload = () => {
     clearDivisionData()

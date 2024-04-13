@@ -24,7 +24,7 @@
       ],
       "resources": [],
       "externalBin": [
-        "binaries/server"
+        "/bin/server"
       ],
       "copyright": "",
       "category": "DeveloperTool",
@@ -43,16 +43,18 @@
     },
     "allowlist": {
       "all": false,
-      "http":{
+      "http": {
         "all": true,
         "request": true,
-        "scope": ["http://xxx.xxx.xx./PR/*"]
+        "scope": [
+          "http://xxx.xxx.xx./PR/*"
+        ]
       },
       "shell": {
         "sidecar": true,
         "scope": [
           {
-            "name": "binaries/server",
+            "name": "/bin/server",
             "sidecar": true
           }
         ]
@@ -70,9 +72,8 @@
     "security": {
       "csp": {
         "default-src": "'self'",
-        "connect-src":"http://localhost:8080"
-    }
-
+        "connect-src": "http://localhost:8080"
+      }
     },
     "updater": {
       "active": false

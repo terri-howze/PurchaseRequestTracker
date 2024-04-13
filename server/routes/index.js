@@ -1,6 +1,6 @@
-var router = express.Router();
 import 'dotenv/config';
-import {express} from 'express';
+import express from 'express';
+const router = express.Router();
 
 import { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest } from '../controller/purchaserequest_controller.js'
 
