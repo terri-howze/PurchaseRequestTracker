@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import '../css/Left_side_bar.css'
 import { LeaderboardOutlined, AddCircleOutline } from '@mui/icons-material'
 import { useStateStore } from '../Store'
-import { Command } from "@tauri-apps/api/shell"
 
 function Left_side_bar() {
 
@@ -12,12 +10,6 @@ function Left_side_bar() {
   const flagDashboardTrue = useStateStore((state) => state.flagDashboardTrue)
   const flagDashboardFalse = useStateStore((state) => state.flagDashboardFalse)
   const clearDivisionData = useStateStore((state) => state.clearDivisionData)
-
-  const spawnserver = async () => {
-    const command = Command.sidecar('../../server')
-    const output = await command.execute()
-    console.log("success")
-  }
 
   const prCreateload = () => {
     clearDivisionData()
@@ -29,7 +21,7 @@ function Left_side_bar() {
     prCreateFlagFalse()
     flagDashboardTrue()
   }
-  //spawnserver()
+
   return (
     <>
       <div className='sidebar_setup'>
