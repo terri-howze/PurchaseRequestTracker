@@ -4,20 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "main": "main.js",
-  "electron": "electron .",
   "scripts": {
     "dev": "vite",
-    "start": "electron .",
-    "startelec": "electron",
+    "startelec": "electron .",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "startapp": "concurrently \"nodemon server/server.js\" \"npm run dev\" ",
     "server": "node server/server.js",
-    "package": "node scripts/move-binary.js",
-    "test-package": "esbuild server/server.js --bundle --platform=node --target=esnext --format=esm --outfile=server.js",
-    "test2": "esbuild server/server.js --bundle --platform=node --outfile=server.js",
-    "nexeBuild": "nexe --build -o server-x86_64-pc-windows-msvc.exe"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -34,6 +31,7 @@
     "dayjs": "^1.11.10",
     "dotenv": "^16.4.1",
     "electron-is-dev": "^3.0.1",
+    "electron-squirrel-startup": "^1.0.0",
     "execa": "^8.0.1",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
@@ -54,6 +52,14 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",

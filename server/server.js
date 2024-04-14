@@ -20,7 +20,11 @@ app.get('/', (req, res) => {
     res.sendFile(resolve('./src/main.jsx'))
 })
 
-app.listen(port, () => {
-    console.log(`server running on ${port}`);
-});
+const startExpressServer = () => {
+    app.listen(port, () => {
+        console.log(`server running on ${port}`);
+    });
+}
+startExpressServer();
 
+export { startExpressServer }
