@@ -2,7 +2,7 @@
   "name": "sherpatest",
   "private": true,
   "version": "0.0.0",
-  "description": "Custom app for SHerpa Inc",
+  "description": "Custom app for Sherpa Inc",
   "type": "module",
   "main": "main.js",
   "author": {

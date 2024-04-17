@@ -1,4 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+@font-face {
+    font-family: BenguiatBold;
+    src: url('../fonts/BenguiatBold.ttf');
+}
+
 body { 
     margin: 0px; 
     padding: 0;
+    font-family: Oswald;
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Popup from './Popup';
 import '../css/Pagination.css'
-
+import Dashboard from './Dashboard';
+import { useStateStore } from '../Store';
 const Pagination = ({ data, itemsPerPage }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -9,6 +10,7 @@ const Pagination = ({ data, itemsPerPage }) => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const isDashboardMounted = useStateStore((state) => state.isDashboardMounted)
     const [trigger, setTrigger] = useState(false)
     const [divdata, getData] = useState({
         cardNumber: 0,
@@ -51,36 +53,48 @@ const Pagination = ({ data, itemsPerPage }) => {
     }
     return (
         <>
+        
             <div className='pagination_div'>
+            {isDashboardMounted ? (
+            <Dashboard />
+             ) : (
+             ""
+                )}
                 {/* Render the current page's items */}
                 <table className='div_table'>
-                    <tr>
-                        <th>PR Number</th>
-                        <th>Department</th>
-                        <th>PR Amount</th>
-                        <th>Date Created</th>
-                        <th>Last Updated</th>
-                        <th>Status</th>
-                        <th>Po Number</th>
-
+                    <thead>
+                    <tr className='table_header_flex'>
+                        <th id='th1'>PR Number</th>
+                        <th id='th2'>Department</th>
+                        <th id='th3'>PR Amount</th>
+                        <th id='th4'>Date Created</th>
+                        <th id='th5'>Last Updated</th>
+                        <th id='th6'>Status</th>
+                        <th id='th7'>Po Number</th>
+                       
                     </tr>
+                    
+                    </thead>
                     {currentItems.map(i => (
                         //<div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>
-                        <tr>
-                            <td onClick={() => handleSubmit(i)}>{i.prNumber}</td>
-                            <td>{i.dep_num}</td>
-                            <td>{i.purchaseRequestAmount} </td>
-                            <td>{i.datePurchaseRequest}</td>
-                            <td>{i.updatedAt}</td>
+                        <tbody>
+                        <tr className='table_content_flex'>
+                            <td headers='th1' onClick={() => handleSubmit(i)}>{i.prNumber}</td>
+                            <td headers='th2'>{i.dep_num}</td>
+                            <td headers='th3'>{i.purchaseRequestAmount} </td>
+                            <td headers='th4'>{i.datePurchaseRequest}</td>
+                            <td headers='th5'>{i.updatedAt}</td>
                             {i.tonyaApproval ?
-                                <td>Approved</td>
+                                <td headers='th6'><div className='approve_box'>Approved</div></td>
                                 :
-                                <td>Pending</td>
+                                <td headers='th6'><div className='pending_box'>Pending</div></td>
                             }
-                            <td>{i.poNumber}</td>
+                            <td headers='th7'>{i.poNumber}</td>
                         </tr>
+                        </tbody>
 
                     ))}
+                    
                 </table>
                 {/* Pagination buttons */}
                 <div className='page_buttons'>

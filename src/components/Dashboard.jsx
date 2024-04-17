@@ -17,6 +17,7 @@ export default function Dashboard() {
   const Loading = useStateStore((state) => state.loading)
   const isLoading = useStateStore((state) => state.flagLoadingTrue)
   const isNotLoading = useStateStore((state) => state.flagLoadingFalse)
+  const flagDashboardFalse = useStateStore((state) => state.flagDashboardFalse)
 
   ///////////////Division 20 pull requests /////////////////////////
   const getTwentyData = async () => {
@@ -28,8 +29,8 @@ export default function Dashboard() {
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
 
     isNotLoading()
+    flagDashboardFalse()
     setdepartmentState(division)
-    console.log(divresultsarr)
 
   }
 
@@ -41,8 +42,9 @@ export default function Dashboard() {
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
-
+  
     isNotLoading()
+    flagDashboardFalse()
     console.log(divresultsarr)
     setdepartmentState(division)
 
@@ -55,9 +57,10 @@ export default function Dashboard() {
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
+    clearDivisionData()
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
-
     isNotLoading()
+    flagDashboardFalse()
     setdepartmentState(division)
   }
 
@@ -68,9 +71,10 @@ export default function Dashboard() {
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
+    
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
-
     isNotLoading()
+    flagDashboardFalse()
     setdepartmentState(division)
   }
   ///////////////Division 53 pull requests /////////////////////////
@@ -80,9 +84,10 @@ export default function Dashboard() {
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
+   
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
-
     isNotLoading()
+    flagDashboardFalse()
     setdepartmentState(division)
   }
 

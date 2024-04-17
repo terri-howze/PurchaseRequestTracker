@@ -9,9 +9,6 @@ export default function Table() {
     return (
         <>
             <div className='box_div'>
-                <table>
-
-                </table>
                 <Pagination
                     data={divresultsarr}
                     itemsPerPage={pageLimit}

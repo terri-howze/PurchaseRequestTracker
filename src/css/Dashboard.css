@@ -5,9 +5,10 @@
 
 .dep_div {
   width: 100%;
-  height: 100px;
+  height: 50px;
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .dep_div:hover {

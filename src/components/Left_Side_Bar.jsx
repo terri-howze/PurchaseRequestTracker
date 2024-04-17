@@ -6,20 +6,29 @@ function Left_side_bar() {
 
   const prCreateFlagTrue = useStateStore((state) => state.flagTrue)
   const prCreateFlagFalse = useStateStore((state) => state.flagFalse)
-
+  const isDashboardMounted = useStateStore((state) => state.isDashboardMounted)
   const flagDashboardTrue = useStateStore((state) => state.flagDashboardTrue)
   const flagDashboardFalse = useStateStore((state) => state.flagDashboardFalse)
   const clearDivisionData = useStateStore((state) => state.clearDivisionData)
+  const isPrCreateMounted = useStateStore((state) => state.isPrCreateMounted)
 
   const prCreateload = () => {
-    clearDivisionData()
     flagDashboardFalse()
-    prCreateFlagTrue()
+    if(isPrCreateMounted == false){
+      prCreateFlagTrue()
+    }else{
+      prCreateFlagFalse()
+    }
+  
   }
   const dashboardLoad = () => {
-    clearDivisionData()
     prCreateFlagFalse()
-    flagDashboardTrue()
+    if(isDashboardMounted == false){
+      flagDashboardTrue()
+    }else{
+      flagDashboardFalse()
+    }
+    
   }
 
   return (
