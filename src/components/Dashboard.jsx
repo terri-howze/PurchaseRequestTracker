@@ -42,7 +42,7 @@ export default function Dashboard() {
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
-  
+
     isNotLoading()
     flagDashboardFalse()
     console.log(divresultsarr)
@@ -71,7 +71,7 @@ export default function Dashboard() {
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
-    
+
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
     isNotLoading()
     flagDashboardFalse()
@@ -84,7 +84,7 @@ export default function Dashboard() {
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
     //divdata.push(...axrequest.data)
-   
+
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
     isNotLoading()
     flagDashboardFalse()
@@ -111,7 +111,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div>
-        {Loading ? <p>Loading...</p>
+        {Loading ? ""
           : <DepartmentData data={divdata} />
         }
         {/* {divdata.map((i) =>{
@@ -121,4 +121,6 @@ export default function Dashboard() {
     </>
   )
 }
+
+
 

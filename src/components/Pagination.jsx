@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Popup from './Popup';
 import '../css/Pagination.css'
 import Dashboard from './Dashboard';
+import { bouncy } from 'ldrs'
 import { useStateStore } from '../Store';
+bouncy.register()
 const Pagination = ({ data, itemsPerPage }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -11,6 +13,7 @@ const Pagination = ({ data, itemsPerPage }) => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
     const isDashboardMounted = useStateStore((state) => state.isDashboardMounted)
+    const Loading = useStateStore((state) => state.loading)
     const [trigger, setTrigger] = useState(false)
     const [divdata, getData] = useState({
         cardNumber: 0,
@@ -53,49 +56,58 @@ const Pagination = ({ data, itemsPerPage }) => {
     }
     return (
         <>
-        
+
             <div className='pagination_div'>
-            {isDashboardMounted ? (
-            <Dashboard />
-             ) : (
-             ""
+                {isDashboardMounted ? (
+                    <Dashboard />
+                ) : (
+                    ""
                 )}
                 {/* Render the current page's items */}
                 <table className='div_table'>
                     <thead>
-                    <tr className='table_header_flex'>
-                        <th id='th1'>PR Number</th>
-                        <th id='th2'>Department</th>
-                        <th id='th3'>PR Amount</th>
-                        <th id='th4'>Date Created</th>
-                        <th id='th5'>Last Updated</th>
-                        <th id='th6'>Status</th>
-                        <th id='th7'>Po Number</th>
-                       
-                    </tr>
-                    
+                        <tr className='table_header_flex'>
+                            <th id='th1'>PR Number</th>
+                            <th id='th2'>Department</th>
+                            <th id='th3'>PR Amount</th>
+                            <th id='th4'>Date Created</th>
+                            <th id='th5'>Last Updated</th>
+                            <th id='th6'>Status</th>
+                            <th id='th7'>Po Number</th>
+
+                        </tr>
+
                     </thead>
                     {currentItems.map(i => (
+
                         //<div key={i.id} className='records_div' onClick={() => handleSubmit(i)}>PR Number:{i.prNumber}</div>
-                        <tbody>
-                        <tr className='table_content_flex'>
-                            <td headers='th1' onClick={() => handleSubmit(i)}>{i.prNumber}</td>
-                            <td headers='th2'>{i.dep_num}</td>
-                            <td headers='th3'>{i.purchaseRequestAmount} </td>
-                            <td headers='th4'>{i.datePurchaseRequest}</td>
-                            <td headers='th5'>{i.updatedAt}</td>
-                            {i.tonyaApproval ?
-                                <td headers='th6'><div className='approve_box'>Approved</div></td>
-                                :
-                                <td headers='th6'><div className='pending_box'>Pending</div></td>
-                            }
-                            <td headers='th7'>{i.poNumber}</td>
-                        </tr>
+                        < tbody >
+                            <tr className='table_content_flex'>
+                                <td headers='th1' onClick={() => handleSubmit(i)}>{i.prNumber}</td>
+                                <td headers='th2'>{i.dep_num}</td>
+                                <td headers='th3'>{i.purchaseRequestAmount} </td>
+                                <td headers='th4'>{i.datePurchaseRequest}</td>
+                                <td headers='th5'>{i.updatedAt}</td>
+                                {i.tonyaApproval ?
+                                    <td headers='th6'><div className='approve_box'>Approved</div></td>
+                                    :
+                                    <td headers='th6'><div className='pending_box'>Pending</div></td>
+                                }
+                                <td headers='th7'>{i.poNumber}</td>
+                            </tr>
                         </tbody>
 
                     ))}
-                    
+
                 </table>
+                {
+                    Loading ? <div className='bouncy_div'><l-bouncy
+                        size="150"
+                        speed="1.75"
+                        color="black"
+                    ></l-bouncy></div>
+                        : ""
+                }
                 {/* Pagination buttons */}
                 <div className='page_buttons'>
                     {currentPage > 1 && (
@@ -111,7 +123,7 @@ const Pagination = ({ data, itemsPerPage }) => {
                         : ""
                     }
                 </div>
-            </div>
+            </div >
         </>
     );
 };

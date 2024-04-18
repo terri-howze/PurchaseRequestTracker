@@ -1,13 +1,14 @@
 .pagination_div {
-        width: 1150px;
-        height: 350px;
-        bottom: 0;
-        position: absolute;
-        background-color: white;
-        margin-bottom: 15px;
-        left: 18.5%;
-        border-radius: 10px;
+    width: 1150px;
+    height: 350px;
+    bottom: 0;
+    position: absolute;
+    background-color: white;
+    margin-bottom: 15px;
+    left: 18.5%;
+    border-radius: 10px;
 }
+
 
 .div_table {
     border-spacing: 10px;
@@ -17,14 +18,15 @@
 .page_buttons {
     bottom: 0;
     position: absolute;
-    
+
 }
 
-table{
+table {
     border-collapse: collapse;
 }
+
 td {
-   border: 1px;
+    border: 1px;
     text-align: center;
     border-bottom: 1pt solid gainsboro;
 }
@@ -37,22 +39,26 @@ th {
     padding: 8px;
     border-bottom: 1pt solid black;
 }
-.table_content_flex{
 
-    
-}
+.table_content_flex {}
 
-.approve_box{
+.approve_box {
     width: 80px;
     background-color: green;
     text-align: center;
     color: white;
 }
 
-.pending_box{
-    width:80px;
+.pending_box {
+    width: 80px;
     background-color: blue;
     color: white;
     text-align: center;
 
+}
+
+.bouncy_div {
+    align-items: center;
+    padding-top: 90px;
+    margin-left: 450px;
 }
