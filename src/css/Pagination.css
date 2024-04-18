@@ -22,13 +22,17 @@
 }
 
 table {
+    border-spacing: 10px;
     border-collapse: collapse;
+ 
 }
 
 td {
     border: 1px;
     text-align: center;
     border-bottom: 1pt solid gainsboro;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 
 

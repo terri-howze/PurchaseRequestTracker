@@ -149,9 +149,17 @@ const updatePurchaseRequest = async (req, res) => {
       }
       )
     }
+    const results = await addPurchaseRequest.findOne({
+      where: {
+        prNumber: req.body.prNumber
+      },
+
+    })
+    return results
   } catch (err) {
     console.log(err)
   }
+  
 }
 const deletePurchaseRequest = async (req, res) => {
   console.log("made it to controller")

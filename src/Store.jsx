@@ -42,6 +42,26 @@ export const useStateStore = create((set) => ({
    */
     divresultsarr: [],
     addDivisionData: (newArr) => set({ divresultsarr: newArr }),
-    clearDivisionData: () => set({ divresultsarr: [] })
+    clearDivisionData: () => set({ divresultsarr: [] }),
+
+    /*
+    Mount state for selected purchase request
+    */
+   purchaseRequest: {
+    cardNumber: 0,
+    cardType: "",
+    createdAt: "",
+    datePurchaseRequest: "",
+    dep_num: 0,
+    id: 0,
+    poNumber: "",
+    prNumber: "",
+    purchaseRequestAmount: 0,
+    updatedAt: "",
+    chrisApproval: false,
+    jasonApproval: false,
+    tonyaApproval: false
+   },
+   setPurchaseRequest:(selecteddata) => set({purchaseRequest: selecteddata})
 
 }))

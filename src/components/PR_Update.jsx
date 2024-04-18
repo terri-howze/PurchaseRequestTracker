@@ -10,23 +10,25 @@ import { DatePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers'
-import { formatDate } from 'date-fns'
+
 
 
 function Pr_Update(props) {
   //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
-  const formatDate = props.data.datePurchaseRequest.slice(0, 10)
-  const [prNumber, setprNumber] = useState(props.data.prNumber)
-  const [department, setdepartment] = useState(props.data.dep_num)
+  const purchaseRequest = useStateStore((state) => state.purchaseRequest)
+  const setPurchaseRequest = useStateStore((state) => state.setPurchaseRequest)
+  const formatDate = purchaseRequest.datePurchaseRequest.slice(0, 10)
+  const [prNumber, setprNumber] = useState(purchaseRequest.prNumber)
+  const [department, setdepartment] = useState(purchaseRequest.dep_num)
   const cardType = "Amex";
-  const [purchaseRequestAmount, setAmount] = useState(props.data.purchaseRequestAmount)
-  const [cardNumber, setCardNumber] = useState(props.data.cardNumber)
+  const [purchaseRequestAmount, setAmount] = useState(purchaseRequest.purchaseRequestAmount)
+  const [cardNumber, setCardNumber] = useState(purchaseRequest.cardNumber)
   const [date, setDate] = useState(formatDate)
-  const [chrisApproval, setChris] = useState(props.data.chrisApproval)
-  const [jasonApproval, setJason] = useState(props.data.jasonApproval)
-  const [tonyaApproval, setTonya] = useState(props.data.tonyaApproval)
-  const id = props.data.id
-  const poNumber = props.data.poNumber
+  const [chrisApproval, setChris] = useState(purchaseRequest.chrisApproval)
+  const [jasonApproval, setJason] = useState(purchaseRequest.jasonApproval)
+  const [tonyaApproval, setTonya] = useState(purchaseRequest.tonyaApproval)
+  const id = purchaseRequest.id
+  const poNumber = purchaseRequest.poNumber
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const addDivisionData = useStateStore((state) => state.addDivisionData)
 
@@ -115,7 +117,6 @@ function Pr_Update(props) {
 
     const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
     //setDate(date)
-    console.log(divresultsarr)
     const data = {
       id,
       prNumber,
@@ -129,9 +130,28 @@ function Pr_Update(props) {
       tonyaApproval,
       poNumber
     };
-    await axios.post('http://localhost:8080/PR/updatePR', data,)
-
-      .then(props.setDisplay(false))
+    const updateResults = await axios.post('http://localhost:8080/PR/updatePR', data,)
+    try{
+    setPurchaseRequest({
+      ...purchaseRequest,
+      cardNumber: updateResults.data.cardNumber,
+      cardType: updateResults.data.cardType,
+      createdAt: updateResults.data.createdAt,
+      datePurchaseRequest: updateResults.data.datePurchaseRequest,
+      dep_num: updateResults.data.dep_num,
+      id: updateResults.data.id,
+      poNumber: updateResults.data.poNumber,
+      prNumber: updateResults.data.prNumber,
+      purchaseRequestAmount: updateResults.data.purchaseRequestAmount,
+      updatedAt: updateResults.data.updatedAt,
+      chrisApproval: updateResults.data.chrisApproval,
+      jasonApproval: updateResults.data.jasonApproval,
+      tonyaApproval: updateResults.data.tonyaApproval
+  })
+}catch(err){
+  console.log(err)
+}
+      props.setDisplay(false)
 
   }
 

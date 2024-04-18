@@ -13,6 +13,7 @@ export default function DepartmentData(props) {
   const departmentState = useStateStore((state) => state.division)
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const [trigger, setTrigger] = useState(false)
+  const setPurchaseRequest = useStateStore((state) => state.setPurchaseRequest)
   const pageLimit = 2
 
   const [divdata, getData] = useState({
