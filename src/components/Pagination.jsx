@@ -59,7 +59,7 @@ const Pagination = ({ data, itemsPerPage }) => {
     }
     return (
         <>
-
+            <div className='center_pagination'>
             <div className='pagination_div'>
                 {isDashboardMounted ? (
                     <Dashboard />
@@ -127,6 +127,7 @@ const Pagination = ({ data, itemsPerPage }) => {
                     }
                 </div>
             </div >
+            </div>
         </>
     );
 };
