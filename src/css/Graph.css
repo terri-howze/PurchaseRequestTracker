@@ -1,0 +1,11 @@
+.graph_inner_box {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.graph_box {
+    width: 100%;
+    height: 100%;
+}

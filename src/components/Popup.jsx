@@ -11,20 +11,20 @@ export default function Popup(props) {
     setUpdate(true)
   }
   const handleDelete = async () => {
-    await axios.delete('http://localhost:8080/PR/deletePR', { params: { data: props.data.id } })
+    await axios.delete('http://localhost:8080/PR/deletePR', { params: { data: purchaseRequest.id } })
   }
 
   return (props.trigger) ? (
     <>
-      {display_update ? <Pr_Update display={display_update} setDisplay={setUpdate}/> :
+      {display_update ? <Pr_Update display={display_update} setDisplay={setUpdate} /> :
         <div className='popup'>
           <div className='popup-inner'>
             PR Number: {purchaseRequest.prNumber}<br />
             Department: {purchaseRequest.dep_num}<br />
             Card Number: {purchaseRequest.cardNumber}<br />
             PR Amount: {purchaseRequest.purchaseRequestAmount}<br />
-            Date of Purchase Request: {purchaseRequest.datePurchaseRequest}<br />
-            Last Updated: {purchaseRequest.updatedAt}<br />
+            Date of Purchase Request: {purchaseRequest.datePurchaseRequest.slice(0, 10)}<br />
+            Last Updated: {purchaseRequest.updatedAt.slice(0, 10)}<br />
             Chris Approval: {JSON.stringify(purchaseRequest.chrisApproval)}<br />
             Jason Approval: {JSON.stringify(purchaseRequest.jasonApproval)}<br />
             Tonya Approval: {JSON.stringify(purchaseRequest.tonyaApproval)}<br />

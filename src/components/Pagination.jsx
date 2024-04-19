@@ -17,22 +17,22 @@ const Pagination = ({ data, itemsPerPage }) => {
     const purchaseRequest = useStateStore((state) => state.purchaseRequest)
     const Loading = useStateStore((state) => state.loading)
     const [trigger, setTrigger] = useState(false)
-    const [divdata, getData] = useState({
-        cardNumber: 0,
-        cardType: "",
-        createdAt: "",
-        datePurchaseRequest: "",
-        dep_num: 0,
-        id: 0,
-        poNumber: "",
-        prNumber: "",
-        purchaseRequestAmount: 0,
-        updatedAt: "",
-        chrisApproval: false,
-        jasonApproval: false,
-        tonyaApproval: false
+    // const [divdata, getData] = useState({
+    //     cardNumber: 0,
+    //     cardType: "",
+    //     createdAt: "",
+    //     datePurchaseRequest: "",
+    //     dep_num: 0,
+    //     id: 0,
+    //     poNumber: "",
+    //     prNumber: "",
+    //     purchaseRequestAmount: 0,
+    //     updatedAt: "",
+    //     chrisApproval: false,
+    //     jasonApproval: false,
+    //     tonyaApproval: false
 
-    })
+    // })
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -53,7 +53,7 @@ const Pagination = ({ data, itemsPerPage }) => {
             jasonApproval: i.jasonApproval,
             tonyaApproval: i.tonyaApproval
         })
-        
+
         // setPurchaseRequest([...i])
         setTrigger(true)
     }
@@ -88,9 +88,9 @@ const Pagination = ({ data, itemsPerPage }) => {
                             <tr className='table_content_flex'>
                                 <td headers='th1' onClick={() => handleSubmit(i)}>{i.prNumber}</td>
                                 <td headers='th2'>{i.dep_num}</td>
-                                <td headers='th3'>{i.purchaseRequestAmount.slice(0, 10)} </td>
+                                <td headers='th3'>{i.purchaseRequestAmount} </td>
                                 <td headers='th4'>{i.datePurchaseRequest.slice(0, 10)}</td>
-                                <td headers='th5'>{i.updatedAt}</td>
+                                <td headers='th5'>{i.updatedAt.slice(0, 10)}</td>
                                 {i.tonyaApproval ?
                                     <td headers='th6'><div className='approve_box'>Approved</div></td>
                                     :
@@ -118,11 +118,11 @@ const Pagination = ({ data, itemsPerPage }) => {
                     )}
 
                     {currentItems.length === itemsPerPage && (
-                        <button onClick={() => paginate(currentPage + 1)}>Next</button>
+                        <button className='' onClick={() => paginate(currentPage + 1)}>Next</button>
                     )}
                 </div>
                 <div>
-                    {trigger ? <Popup trigger={trigger} setTrigger={setTrigger}/>
+                    {trigger ? <Popup trigger={trigger} setTrigger={setTrigger} />
                         : ""
                     }
                 </div>

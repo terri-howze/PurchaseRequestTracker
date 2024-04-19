@@ -5,7 +5,7 @@
     position: absolute;
     background-color: white;
     margin-bottom: 15px;
-    left: 18.5%;
+    left: 22%;
     border-radius: 10px;
 }
 
@@ -18,13 +18,15 @@
 .page_buttons {
     bottom: 0;
     position: absolute;
-
+    left: 44%;
 }
+
+.page_buttons button {}
 
 table {
     border-spacing: 10px;
     border-collapse: collapse;
- 
+
 }
 
 td {
