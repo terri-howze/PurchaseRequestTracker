@@ -14,6 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 
 function Pr_Create() {
   //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
+  let formData = new FormData();
   const [prNumber, setprNumber] = useState()
   const [department, setdepartment] = useState('0')
   const cardType = "Amex";

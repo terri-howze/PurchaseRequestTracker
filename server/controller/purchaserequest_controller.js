@@ -3,6 +3,8 @@ import 'dotenv/config'
 import { Sequelize, DataTypes, where } from "sequelize";
 import addPurchaseRequest from "../models/purchaserequest_model.js";
 import purchaseOrderGenerator from "./purchaseOrdergenerator.js";
+// import { MsSqlDialect } from '@sequelize/mssql'
+// import {Sequelize} from '@sequelize/core';
 
 
 
@@ -47,6 +49,7 @@ const purchaseRequest = async (req, res) => {
 }
 
 
+
 const getDep20prs = async (req, res) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
@@ -72,8 +75,6 @@ const getDep20prs = async (req, res) => {
   } catch (err) {
     console.log(err)
   }
-  // const anime = await axios.get('https://jsonplaceholder.typicode.com/users')
-  // return anime.data
 
 }
 
