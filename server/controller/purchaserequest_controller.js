@@ -61,10 +61,7 @@ const getDep20prs = async (req, res) => {
   });
   try {
     await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
     await sequelize.sync();
-
-    console.log(req.query.data)
     const results = await addPurchaseRequest.findAll({
       where: {
         dep_num: req.query.data
@@ -91,14 +88,12 @@ const searchBar = async (req, res) => {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     await sequelize.sync();
-    console.log(req.query.data)
     const results = await addPurchaseRequest.findOne({
       where: {
         prNumber: req.query.data
       },
 
     })
-    console.log(results)
     return results
   } catch (err) {
     console.log(err)
@@ -160,7 +155,7 @@ const updatePurchaseRequest = async (req, res) => {
   } catch (err) {
     console.log(err)
   }
-  
+
 }
 const deletePurchaseRequest = async (req, res) => {
   console.log("made it to controller")
@@ -184,7 +179,6 @@ const deletePurchaseRequest = async (req, res) => {
       }
     }
     )
-    console.log(req.body)
 
   } catch (err) {
     console.log(err)

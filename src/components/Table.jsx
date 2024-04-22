@@ -5,7 +5,7 @@ import { useStateStore } from '../Store'
 
 export default function Table() {
     const divresultsarr = useStateStore((state) => state.divresultsarr)
-    const pageLimit = 4
+    const pageLimit = 2
     return (
         <>
             <div className='box_div'>

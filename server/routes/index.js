@@ -8,7 +8,6 @@ router.get('/PR/get20/', async (req, res) => {
     try {
         console.log(req.query)
         const twentydata = await getDep20prs(req)
-        console.log(twentydata)
         res.status(200).json(twentydata)
     } catch (err) {
         res.status(500).json(err)
@@ -26,7 +25,6 @@ router.get('/PR/searchBar', async (req, res) => {
 
 router.post('/PR/addPR', async (req, res) => {
     const newPR = await purchaseRequest(req).then(() => {
-        console.log("made it")
     }).catch((err) => {
         console.log("Not Connected ERROR! ", err);
     })

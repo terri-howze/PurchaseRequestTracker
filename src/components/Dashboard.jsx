@@ -1,10 +1,9 @@
 import '../css/Dashboard.css'
 import { useState } from 'react'
-import { Card } from '@mui/material'
 import axios from 'axios'
 import { useStateStore } from '../Store'
 import DepartmentData from './Division Pr Get request Data/DepartmentData'
-import DivisionList from './DivisionList'
+
 
 
 export default function Dashboard() {

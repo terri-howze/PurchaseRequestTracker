@@ -11,7 +11,14 @@ export const useStateStore = create((set) => ({
     division: 0,
     setDepartmentStore: (departmentID) => set({ division: departmentID }),
     resetDepartmentStore: () => set({ division: 0 }),
-
+    //End of Division mount state and actions
+    /*
+    trigger state for popup
+    */
+    triggerState: false,
+    flagTriggerTrue: () => set({ triggerState: true }),
+    flagTriggerFalse: () => set({ triggerState: false }),
+    //End of trigger mount state and actions
     /*
     mount state for Pr_Create Component
     */
@@ -47,21 +54,21 @@ export const useStateStore = create((set) => ({
     /*
     Mount state for selected purchase request
     */
-   purchaseRequest: {
-    cardNumber: 0,
-    cardType: "",
-    createdAt: "",
-    datePurchaseRequest: "",
-    dep_num: 0,
-    id: 0,
-    poNumber: "",
-    prNumber: "",
-    purchaseRequestAmount: 0,
-    updatedAt: "",
-    chrisApproval: false,
-    jasonApproval: false,
-    tonyaApproval: false
-   },
-   setPurchaseRequest:(selecteddata) => set({purchaseRequest: selecteddata})
+    purchaseRequest: {
+        cardNumber: 0,
+        cardType: "",
+        createdAt: "",
+        datePurchaseRequest: "",
+        dep_num: 0,
+        id: 0,
+        poNumber: "",
+        prNumber: "",
+        purchaseRequestAmount: 0,
+        updatedAt: "",
+        chrisApproval: false,
+        jasonApproval: false,
+        tonyaApproval: false
+    },
+    setPurchaseRequest: (selecteddata) => set({ purchaseRequest: selecteddata })
 
 }))

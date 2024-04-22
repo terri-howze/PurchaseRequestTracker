@@ -7,6 +7,8 @@ import { useStateStore } from '../Store'
 export default function Popup(props) {
   const [display_update, setUpdate] = useState(false)
   const purchaseRequest = useStateStore((state) => state.purchaseRequest)
+  const flagTriggerFalse = useStateStore((state) => state.flagTriggerFalse)
+  const triggerState = useStateStore((state) => state.triggerState)
   const handleUpdate = () => {
     setUpdate(true)
   }
@@ -14,7 +16,7 @@ export default function Popup(props) {
     await axios.delete('http://localhost:8080/PR/deletePR', { params: { data: purchaseRequest.id } })
   }
 
-  return (props.trigger) ? (
+  return (triggerState) ? (
     <>
       {display_update ? <Pr_Update display={display_update} setDisplay={setUpdate} /> :
         <div className='popup'>
@@ -31,7 +33,7 @@ export default function Popup(props) {
             Purchase Order Number: {purchaseRequest.poNumber}
             <button className='update-btn' onClick={handleUpdate}>Update</button>
             <button className='delete-btn' onClick={handleDelete}>Delete</button>
-            <button className='close-btn' onClick={() => props.setTrigger(false)}>Close</button>
+            <button className='close-btn' onClick={flagTriggerFalse}>Close</button>
           </div>
         </div>
       }

@@ -13,20 +13,8 @@ export default function Header() {
   const Loading = useStateStore((state) => state.loading)
   const isLoading = useStateStore((state) => state.flagLoadingTrue)
   const isNotLoading = useStateStore((state) => state.flagLoadingFalse)
-  const [trigger, setTrigger] = useState(false)
-  const [divdata, getDivData] = useState({
-    cardNumber: 0,
-    cardType: "",
-    createdAt: "",
-    datePurchaseRequest: "",
-    dep_num: 0,
-    id: 0,
-    poNumber: "",
-    prNumber: "",
-    purchaseRequestAmount: 0,
-    updatedAt: ""
-
-  })
+  const setPurchaseRequest = useStateStore((state) => state.setPurchaseRequest)
+  const purchaseRequest = useStateStore((state) => state.purchaseRequest)
 
   const onNewSearch = e => {
     setsearch_value(e.target.value)
@@ -36,8 +24,8 @@ export default function Header() {
     isLoading()
     try {
       const axrequest = await axios.get('http://localhost:8080/PR/searchBar', { params: { data: search_value } }, { timeout: 5000 })
-      getDivData({
-        ...divdata,
+      setPurchaseRequest({
+        ...purchaseRequest,
         cardNumber: axrequest.data.cardNumber,
         cardType: axrequest.data.cardType,
         createdAt: axrequest.data.createdAt,
@@ -47,10 +35,12 @@ export default function Header() {
         poNumber: axrequest.data.poNumber,
         prNumber: axrequest.data.prNumber,
         purchaseRequestAmount: axrequest.data.purchaseRequestAmount,
-        updatedAt: axrequest.data.updatedAt
+        updatedAt: axrequest.data.updatedAt,
+        chrisApproval: axrequest.data.chrisApproval,
+        jasonApproval: axrequest.data.jasonApproval,
+        tonyaApproval: axrequest.data.tonyaApproval
       })
       isNotLoading()
-      setTrigger(true)
     } catch (err) {
       console.log("Error detected")
       isNotLoading()
@@ -74,9 +64,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      {trigger ? <Popup trigger={trigger} setTrigger={setTrigger} data={divdata} /> :
-        ""
-      }
+
     </>
   )
 }

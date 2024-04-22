@@ -10,12 +10,12 @@ import Createpr from './Top 3 Boxes/Createpr'
 export default function Center_box() {
   const isPrCreateMounted = useStateStore((state) => state.isPrCreateMounted)
   const divresultsarr = useStateStore((state) => state.divresultsarr)
-  const pageLimit = 4
+  const pageLimit = 6
 
 
   return (
     <>
-   
+
       <div className='center_box_flex'>
         {/* {isPrCreateMounted ? (
           <Pr_Create />
@@ -24,19 +24,16 @@ export default function Center_box() {
         )} */}
         <div className='flex_component_div'>
           <div class="flex-grid">
-          <div class="col"><Createpr /></div>
-          <div class="col"> <Graph /></div>
+            <div class="col"><Createpr /></div>
+            <div class="col"> <Graph /></div>
             <div class="col"> <Date /></div>
           </div>
-        
-      <Pagination
-        data={divresultsarr}
-        itemsPerPage={pageLimit}
-      />
-    
-           
-           
-       
+
+          <Pagination />
+
+
+
+
         </div>
 
       </div>
@@ -49,8 +46,8 @@ export default function Center_box() {
 
 
       </div> */}
-    
-      
+
+
     </>
   )
 }
