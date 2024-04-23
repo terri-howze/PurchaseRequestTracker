@@ -24,7 +24,7 @@ export default function Dashboard() {
     const division = 20
     isLoading()
     const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
-    //divdata.push(...axrequest.data)
+
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
 
     isNotLoading()

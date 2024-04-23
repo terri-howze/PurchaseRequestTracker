@@ -185,5 +185,46 @@ const deletePurchaseRequest = async (req, res) => {
   }
 }
 
+const orderByDate = async (req) => {
+  const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mssql',
+    port: 1433,
+    dialectOptions: {
+      options: { "requestTimeout": 300000 }
+    }
 
-export { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest }; 
+  });
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+    if (req.body.orderDirection == 1) {
+      const results = await addPurchaseRequest.findAll({
+        where: {
+          dep_num: req.body.departmentState
+        },
+        order: [
+          ['datePurchaseRequest', 'DESC']
+        ]
+
+      })
+      return results
+    } else {
+      const results = await addPurchaseRequest.findAll({
+        where: {
+          dep_num: req.body.departmentState
+        },
+        order: [
+          ['datePurchaseRequest', 'ASC']
+        ]
+
+      })
+      return results
+    }
+
+  } catch (err) {
+    return err
+  }
+}
+
+export { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest, orderByDate }; 
