@@ -57,10 +57,18 @@ const Pagination = () => {
         for (let i = 0; i < divresultsarr.length; i++) {
             if (divresultsarr[i].poNumber == null) {
                 temparr.push(divresultsarr[i])
+                console.log(divresultsarr[i])
             }
         }
+        
+        for (let i = 0; i < divresultsarr.length; i++) {
+            if (divresultsarr[i].poNumber != null) {
+                temparr.push(divresultsarr[i])
+            }
+        }
+        clearDivisionData()
+        addDivisionData([...useStateStore.getState().divresultsarr, ...temparr])
 
-        console.log(temparr)
 
     }
     /************************************************************************************/

@@ -1,8 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
 const router = express.Router();
+import storage from '../controller/fileStorage.js';
+import multer from 'multer';
 
 import { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest, orderByDate } from '../controller/purchaserequest_controller.js'
+
+const upload = multer({storage: storage})
+
 
 router.get('/PR/get20/', async (req, res) => {
     try {
@@ -33,7 +38,7 @@ router.post('/PR/orderByDate', async (req, res) => {
 
 })
 
-router.post('/PR/addPR', async (req, res) => {
+router.post('/PR/addPR', upload.single('file'), async (req, res) => {
     const newPR = await purchaseRequest(req).then(() => {
     }).catch((err) => {
         console.log("Not Connected ERROR! ", err);

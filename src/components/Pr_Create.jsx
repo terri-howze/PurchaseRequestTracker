@@ -1,4 +1,4 @@
-import { useState } from 'react'
+ import { useState } from 'react'
 // import { FormControl } from '@mui/material'
 import { Select } from '@mui/material'
 import { MenuItem } from '@mui/material'
@@ -14,9 +14,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 
 function Pr_Create() {
   //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
-  let formData = new FormData();
   const [prNumber, setprNumber] = useState()
   const [department, setdepartment] = useState('0')
+  const [file, setFile] = useState()
   const cardType = "Amex";
   const [purchaseRequestAmount, setAmount] = useState('0')
   const [cardNumber, setCardNumber] = useState('0')
@@ -27,6 +27,15 @@ function Pr_Create() {
   const [chrisApproval, setChris] = useState(false)
   const [jasonApproval, setJason] = useState(false)
   const [tonyaApproval, setTonya] = useState(false)
+  const config = {
+    headers: {
+        'content-type': 'multipart/form-data'
+    }
+}
+
+  function handlefile(event) {
+    setFile(event.target.files[0])
+  }
 
   //Function to change prNumber state to new prNumber input
   const onNewPR = e => {
@@ -49,7 +58,7 @@ function Pr_Create() {
   }
 
   // Function to handle submittal of Pr and save it
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     const datePurchaseRequest = dayjs(date).format('MM-DD-YYYY')
     //setDate(date)
     console.log(divisionResults)
@@ -60,10 +69,11 @@ function Pr_Create() {
       purchaseRequestAmount,
       datePurchaseRequest,
       cardNumber,
+      file
 
     };
-    axios.post('http://localhost:8080/PR/addPR', data)
-    console.log(data)
+    await axios.post('http://localhost:8080/PR/addPR', data, config)
+    document.getElementById("myForm").reset();
 
     falseMount()
   }
@@ -94,6 +104,8 @@ function Pr_Create() {
         <input type="text" onChange={onNewPurchaseRequestAmount}></input>
         <label for="Department">Card Number</label>
         <input type="text" onChange={onNewCardNumber}></input>
+        <label>PR Document</label>
+        <input type='file' onChange={handlefile}></input>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             onChange={(newValue) => {
@@ -101,7 +113,7 @@ function Pr_Create() {
             }} />
         </LocalizationProvider>
       </form>
-      <button onClick={handleSubmit}>Submit</button>
+      <button id='myform' type='submit' onClick={handleSubmit}>Submit</button>
     </div>
   )
 }
