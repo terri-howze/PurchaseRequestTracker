@@ -21,12 +21,11 @@ export default function Createpr() {
   const [purchaseRequestAmount, setAmount] = useState('0')
   const [cardNumber, setCardNumber] = useState('0')
   const [date, setDate] = useState("")
-  const mountSatte = useStateStore((state) => state.isMounted)
-  const falseMount = useStateStore((state) => state.flagFalse)
   const divisionResults = useStateStore((state) => state.divisionResults)
-  const [chrisApproval, setChris] = useState(false)
-  const [jasonApproval, setJason] = useState(false)
-  const [tonyaApproval, setTonya] = useState(false)
+  const createPrFalseMount = useStateStore((state) => state.flagFalse)
+//   const [chrisApproval, setChris] = useState(false)
+//   const [jasonApproval, setJason] = useState(false)
+//   const [tonyaApproval, setTonya] = useState(false)
   const config = {
     headers: {
         'content-type': 'multipart/form-data'
@@ -73,9 +72,8 @@ export default function Createpr() {
 
     };
     await axios.post('http://localhost:8080/PR/addPR', data, config)
-    document.getElementById("myForm").reset();
 
-    falseMount()
+    createPrFalseMount()
   }
 
   return (

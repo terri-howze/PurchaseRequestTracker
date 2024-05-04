@@ -1,12 +1,9 @@
 import '../css/Center_box.css'
 import { useStateStore } from '../Store'
-import Pr_Create from './Pr_Create'
 import Pagination from './Pagination'
-import Flexbox from './Flexbox'
 import Graph from './Top 3 Boxes/Graph'
-import Date from './Top 3 Boxes/Date'
 import Createpr from './Top 3 Boxes/Createpr'
-import { Container } from '@mui/material'
+import Piegraph from './Top 3 Boxes/PieGraph'
 
 export default function Center_box() {
   const isPrCreateMounted = useStateStore((state) => state.isPrCreateMounted)
@@ -24,11 +21,17 @@ export default function Center_box() {
           ""
         )} */}
         <div className='flex_component_div'>
+         
+          {isPrCreateMounted ? (
+        <div class="col"><Createpr /></div>
+        ) : (
           <container class="flex-grid">
-            <div class="col"><Createpr /></div>
             <div class="col"><Graph /></div>
-            <div class="col"><Date /></div>
+            <div class="col"><Piegraph /> </div>
           </container>
+        )}
+     
+            
           </div>
           <Pagination />
 

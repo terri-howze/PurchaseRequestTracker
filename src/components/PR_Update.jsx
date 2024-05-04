@@ -29,8 +29,11 @@ function Pr_Update(props) {
   const [tonyaApproval, setTonya] = useState(purchaseRequest.tonyaApproval)
   const id = purchaseRequest.id
   const poNumber = purchaseRequest.poNumber
+  const departmentState = useStateStore((state) => state.division)
   const divresultsarr = useStateStore((state) => state.divresultsarr)
   const addDivisionData = useStateStore((state) => state.addDivisionData)
+  const clearDivisionData = useStateStore((state) => state.clearDivisionData)
+
 
 
   //Text thats shows Approved or not Approved for each approver
@@ -130,7 +133,8 @@ function Pr_Update(props) {
       tonyaApproval,
       poNumber
     };
-    const updateResults = await axios.post('http://localhost:8080/PR/updatePR', data,)
+    const updateResults = await axios.post('http://localhost:8080/PR/updatePR', data)
+    const updatedDivResults = await axios.get('http://localhost:8080/PR/get20', { params: { data: departmentState } })
     try{
     setPurchaseRequest({
       ...purchaseRequest,
@@ -148,6 +152,8 @@ function Pr_Update(props) {
       jasonApproval: updateResults.data.jasonApproval,
       tonyaApproval: updateResults.data.tonyaApproval
   })
+  clearDivisionData()
+  addDivisionData([...useStateStore.getState().divresultsarr, ...updatedDivResults.data])
 }catch(err){
   console.log(err)
 }

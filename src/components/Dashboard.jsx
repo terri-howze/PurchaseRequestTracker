@@ -44,7 +44,6 @@ export default function Dashboard() {
 
     isNotLoading()
     flagDashboardFalse()
-    console.log(divresultsarr)
     setdepartmentState(division)
 
   }
