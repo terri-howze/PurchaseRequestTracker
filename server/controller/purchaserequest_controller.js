@@ -15,9 +15,13 @@ const purchaseRequest = async (req, res) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
-    port: 1433,
+    port: process.env.DB_PORT,
     dialectOptions: {
-      options: { "requestTimeout": 300000 }
+      options: {
+        requestTimeout: 300000,
+        encrypt: true,
+      },
+
     }
 
   });
@@ -33,9 +37,9 @@ const purchaseRequest = async (req, res) => {
       cardNumber: req.body.cardNumber,
       datePurchaseRequest: req.body.datePurchaseRequest,
       purchaseRequestAmount: req.body.purchaseRequestAmount,
-      chrisApproval: false,
-      jasonApproval: false,
-      tonyaApproval: false
+      admin1Approval: false,
+      admin2Approval: false,
+      admin3Approval: false
     })
 
   } catch (err) {
@@ -50,14 +54,19 @@ const purchaseRequest = async (req, res) => {
 
 
 
-const getDep20prs = async (req, res) => {
+const departmentPr = async (req, res) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
-    port: 1433,
+    port: process.env.DB_PORT,
     dialectOptions: {
-      options: { "requestTimeout": 300000 }
+      options: {
+        requestTimeout: 300000,
+        encrypt: true,
+      },
+
     }
+
   });
   try {
     await sequelize.authenticate();
@@ -106,7 +115,7 @@ const updatePurchaseRequest = async (req, res) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
-    port: 1433,
+    port: process.env.DB_PORT,
     dialectOptions: {
       options: { "requestTimeout": 300000 }
     }
@@ -125,9 +134,9 @@ const updatePurchaseRequest = async (req, res) => {
       cardNumber: req.body.cardNumber,
       datePurchaseRequest: req.body.datePurchaseRequest,
       purchaseRequestAmount: req.body.purchaseRequestAmount,
-      chrisApproval: req.body.chrisApproval,
-      jasonApproval: req.body.jasonApproval,
-      tonyaApproval: req.body.tonyaApproval
+      admin1Approval: req.body.admin1Approval,
+      admin2Approval: req.body.admin2Approval,
+      admin3Approval: req.body.admin3Approval
     }, {
       where: {
         id: req.body.id
@@ -227,4 +236,4 @@ const orderByDate = async (req) => {
   }
 }
 
-export { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest, orderByDate }; 
+export { purchaseRequest, departmentPr, searchBar, updatePurchaseRequest, deletePurchaseRequest, orderByDate }; 

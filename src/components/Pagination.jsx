@@ -42,9 +42,9 @@ const Pagination = () => {
             prNumber: i.prNumber,
             purchaseRequestAmount: i.purchaseRequestAmount,
             updatedAt: i.updatedAt,
-            chrisApproval: i.chrisApproval,
-            jasonApproval: i.jasonApproval,
-            tonyaApproval: i.tonyaApproval
+            admin1Approval: i.admin1Approval,
+            admin2Approval: i.admin2Approval,
+            admin3Approval: i.admin3Approval
         })
 
         // setPurchaseRequest([...i])
@@ -60,7 +60,7 @@ const Pagination = () => {
                 console.log(divresultsarr[i])
             }
         }
-        
+
         for (let i = 0; i < divresultsarr.length; i++) {
             if (divresultsarr[i].poNumber != null) {
                 temparr.push(divresultsarr[i])
@@ -162,7 +162,7 @@ const Pagination = () => {
                                     <td headers='th3'>{i.purchaseRequestAmount} </td>
                                     <td headers='th4'>{i.datePurchaseRequest.slice(0, 10)}</td>
                                     <td headers='th5'>{i.updatedAt.slice(0, 10)}</td>
-                                    {i.tonyaApproval ?
+                                    {i.admin3Approval ?
                                         <td headers='th6'><div className='approve_box'>Approved</div></td>
                                         :
                                         <td headers='th6'><div className='pending_box'>Pending</div></td>

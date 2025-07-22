@@ -36,9 +36,9 @@ export default function Header() {
         prNumber: axrequest.data.prNumber,
         purchaseRequestAmount: axrequest.data.purchaseRequestAmount,
         updatedAt: axrequest.data.updatedAt,
-        chrisApproval: axrequest.data.chrisApproval,
-        jasonApproval: axrequest.data.jasonApproval,
-        tonyaApproval: axrequest.data.tonyaApproval
+        admin1Approval: axrequest.data.admin1Approval,
+        admin2Approval: axrequest.data.admin2Approval,
+        admin3Approval: axrequest.data.admin3Approval
       })
       isNotLoading()
     } catch (err) {

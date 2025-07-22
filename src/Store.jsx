@@ -65,9 +65,9 @@ export const useStateStore = create((set) => ({
         prNumber: "",
         purchaseRequestAmount: 0,
         updatedAt: "",
-        chrisApproval: false,
-        jasonApproval: false,
-        tonyaApproval: false
+        admin1Approval: false,
+        admin2Approval: false,
+        admin3Approval: false
     },
     setPurchaseRequest: (selecteddata) => set({ purchaseRequest: selecteddata })
 

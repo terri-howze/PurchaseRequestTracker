@@ -23,7 +23,7 @@ export default function Dashboard() {
     clearDivisionData()
     const division = 20
     isLoading()
-    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
+    const axrequest = await axios.get('http://localhost:8080/PR/departmentPr', { params: { data: division } })
 
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
 
@@ -38,7 +38,7 @@ export default function Dashboard() {
     clearDivisionData()
     const division = 50
     isLoading()
-    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
+    const axrequest = await axios.get('http://localhost:8080/PR/departmentPr', { params: { data: division } })
     //divdata.push(...axrequest.data)
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
 
@@ -53,7 +53,7 @@ export default function Dashboard() {
     clearDivisionData()
     const division = 51
     isLoading()
-    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
+    const axrequest = await axios.get('http://localhost:8080/PR/departmentPr', { params: { data: division } })
     //divdata.push(...axrequest.data)
     clearDivisionData()
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
@@ -67,7 +67,7 @@ export default function Dashboard() {
     clearDivisionData()
     const division = 52
     isLoading()
-    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
+    const axrequest = await axios.get('http://localhost:8080/PR/departmentPr', { params: { data: division } })
     //divdata.push(...axrequest.data)
 
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])
@@ -80,7 +80,7 @@ export default function Dashboard() {
     clearDivisionData()
     const division = 53
     isLoading()
-    const axrequest = await axios.get('http://localhost:8080/PR/get20', { params: { data: division } })
+    const axrequest = await axios.get('http://localhost:8080/PR/departmentPr', { params: { data: division } })
     //divdata.push(...axrequest.data)
 
     addDivisionData([...useStateStore.getState().divresultsarr, ...axrequest.data])

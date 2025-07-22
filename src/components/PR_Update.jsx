@@ -24,9 +24,9 @@ function Pr_Update(props) {
   const [purchaseRequestAmount, setAmount] = useState(purchaseRequest.purchaseRequestAmount)
   const [cardNumber, setCardNumber] = useState(purchaseRequest.cardNumber)
   const [date, setDate] = useState(formatDate)
-  const [chrisApproval, setChris] = useState(purchaseRequest.chrisApproval)
-  const [jasonApproval, setJason] = useState(purchaseRequest.jasonApproval)
-  const [tonyaApproval, setTonya] = useState(purchaseRequest.tonyaApproval)
+  const [admin1Approval, setadmin1] = useState(purchaseRequest.admin1Approval)
+  const [admin2Approval, setadmin2] = useState(purchaseRequest.admin2Approval)
+  const [admin3Approval, setadmin3] = useState(purchaseRequest.admin3Approval)
   const id = purchaseRequest.id
   const poNumber = purchaseRequest.poNumber
   const departmentState = useStateStore((state) => state.division)
@@ -37,27 +37,27 @@ function Pr_Update(props) {
 
 
   //Text thats shows Approved or not Approved for each approver
-  //const [chrisApproveText, setChrisApproved] = useState("")
+  //const [admin1ApproveText, setadmin1Approved] = useState("")
 
-  let chrisApprovedText = ""
-  let jasonApprovedText = ""
-  let tonyaApprovedText = ""
+  let admin1ApprovedText = ""
+  let admin2ApprovedText = ""
+  let admin3ApprovedText = ""
   //set initial state of the approve texts
-  if (chrisApproval === true) {
-    chrisApprovedText = "Approved"
+  if (admin1Approval === true) {
+    admin1ApprovedText = "Approved"
   } else {
-    chrisApprovedText = "Not Approved"
+    admin1ApprovedText = "Not Approved"
   }
 
-  if (jasonApproval === true) {
-    jasonApprovedText = "Approved"
+  if (admin2Approval === true) {
+    admin2ApprovedText = "Approved"
   } else {
-    jasonApprovedText = "Not Approved"
+    admin2ApprovedText = "Not Approved"
 
-  } if (tonyaApproval === true) {
-    tonyaApprovedText = "Approved"
+  } if (admin3Approval === true) {
+    admin3ApprovedText = "Approved"
   } else {
-    tonyaApprovedText = "Not Approved"
+    admin3ApprovedText = "Not Approved"
   }
   //approveText()
 
@@ -66,29 +66,29 @@ function Pr_Update(props) {
   // const divisionResults = useStateStore((state) => state.divisionResults)
   //Functions to handle submitting PR
 
-  const onChrisApprove = (e) => {
-    if (chrisApproval === true) {
-      setChris(false)
+  const onadmin1Approve = (e) => {
+    if (admin1Approval === true) {
+      setadmin1(false)
     } else {
-      setChris(true)
+      setadmin1(true)
     }
 
   }
 
-  const onJasonApprove = () => {
-    if (jasonApproval === true) {
-      setJason(false)
+  const onadmin2Approve = () => {
+    if (admin2Approval === true) {
+      setadmin2(false)
     } else {
-      setJason(true)
+      setadmin2(true)
     }
 
   }
 
-  const onTonyaApprove = () => {
-    if (tonyaApproval === true) {
-      setTonya(false)
+  const onadmin3Approve = () => {
+    if (admin3Approval === true) {
+      setadmin3(false)
     } else {
-      setTonya(true)
+      setadmin3(true)
     }
 
   }
@@ -128,36 +128,36 @@ function Pr_Update(props) {
       purchaseRequestAmount,
       datePurchaseRequest,
       cardNumber,
-      chrisApproval,
-      jasonApproval,
-      tonyaApproval,
+      admin1Approval,
+      admin2Approval,
+      admin3Approval,
       poNumber
     };
     const updateResults = await axios.post('http://localhost:8080/PR/updatePR', data)
-    const updatedDivResults = await axios.get('http://localhost:8080/PR/get20', { params: { data: departmentState } })
-    try{
-    setPurchaseRequest({
-      ...purchaseRequest,
-      cardNumber: updateResults.data.cardNumber,
-      cardType: updateResults.data.cardType,
-      createdAt: updateResults.data.createdAt,
-      datePurchaseRequest: updateResults.data.datePurchaseRequest,
-      dep_num: updateResults.data.dep_num,
-      id: updateResults.data.id,
-      poNumber: updateResults.data.poNumber,
-      prNumber: updateResults.data.prNumber,
-      purchaseRequestAmount: updateResults.data.purchaseRequestAmount,
-      updatedAt: updateResults.data.updatedAt,
-      chrisApproval: updateResults.data.chrisApproval,
-      jasonApproval: updateResults.data.jasonApproval,
-      tonyaApproval: updateResults.data.tonyaApproval
-  })
-  clearDivisionData()
-  addDivisionData([...useStateStore.getState().divresultsarr, ...updatedDivResults.data])
-}catch(err){
-  console.log(err)
-}
-      props.setDisplay(false)
+    const updatedDivResults = await axios.get('http://localhost:8080/PR/departmentPr', { params: { data: departmentState } })
+    try {
+      setPurchaseRequest({
+        ...purchaseRequest,
+        cardNumber: updateResults.data.cardNumber,
+        cardType: updateResults.data.cardType,
+        createdAt: updateResults.data.createdAt,
+        datePurchaseRequest: updateResults.data.datePurchaseRequest,
+        dep_num: updateResults.data.dep_num,
+        id: updateResults.data.id,
+        poNumber: updateResults.data.poNumber,
+        prNumber: updateResults.data.prNumber,
+        purchaseRequestAmount: updateResults.data.purchaseRequestAmount,
+        updatedAt: updateResults.data.updatedAt,
+        admin1Approval: updateResults.data.admin1Approval,
+        admin2Approval: updateResults.data.admin2Approval,
+        admin3Approval: updateResults.data.admin3Approval
+      })
+      clearDivisionData()
+      addDivisionData([...useStateStore.getState().divresultsarr, ...updatedDivResults.data])
+    } catch (err) {
+      console.log(err)
+    }
+    props.setDisplay(false)
 
   }
 
@@ -198,16 +198,16 @@ function Pr_Update(props) {
                   }} />
               </LocalizationProvider>
               <div>
-                Chris: {chrisApprovedText}
-                <button type="button" id='chrisSwitch' onClick={onChrisApprove}>Change</button>
+                admin1: {admin1ApprovedText}
+                <button type="button" id='admin1Switch' onClick={onadmin1Approve}>Change</button>
               </div>
               <div>
-                Jason: {jasonApprovedText}
-                <button type="button" id='jasonSwitch' onClick={onJasonApprove}>Change</button>
+                admin2: {admin2ApprovedText}
+                <button type="button" id='admin2Switch' onClick={onadmin2Approve}>Change</button>
               </div>
               <div>
-                Tonya: {tonyaApprovedText}
-                <button type="button" id='tonyaSwitch' onClick={onTonyaApprove}>Change</button>
+                admin3: {admin3ApprovedText}
+                <button type="button" id='admin3Switch' onClick={onadmin3Approve}>Change</button>
               </div>
             </form>
             <button onClick={handleSubmit}>Submit</button>

@@ -33,7 +33,7 @@ const purchaseOrderGenerator = async (req) => {
     })
     console.log(results.length)
     const resultslength = results.length + 1
-    if (req.body.chrisApproval && req.body.jasonApproval && req.body.tonyaApproval == true) {
+    if (req.body.admin1Approval && req.body.admin2Approval && req.body.admin3Approval == true) {
       let purchaseorderNumber = year + "." + daymonth + "." + req.body.department + "." + resultslength
       return purchaseorderNumber
     }

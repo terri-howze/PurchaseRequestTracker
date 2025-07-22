@@ -1,4 +1,4 @@
- import { useState } from 'react'
+import { useState } from 'react'
 // import { FormControl } from '@mui/material'
 import { Select } from '@mui/material'
 import { MenuItem } from '@mui/material'
@@ -24,14 +24,14 @@ function Pr_Create() {
   const mountSatte = useStateStore((state) => state.isMounted)
   const falseMount = useStateStore((state) => state.flagFalse)
   const divisionResults = useStateStore((state) => state.divisionResults)
-  const [chrisApproval, setChris] = useState(false)
-  const [jasonApproval, setJason] = useState(false)
-  const [tonyaApproval, setTonya] = useState(false)
+  const [admin1Approval, setadmin1] = useState(false)
+  const [admin2Approval, setadmin2] = useState(false)
+  const [admin3Approval, setadmin3] = useState(false)
   const config = {
     headers: {
-        'content-type': 'multipart/form-data'
+      'content-type': 'multipart/form-data'
     }
-}
+  }
 
   function handlefile(event) {
     setFile(event.target.files[0])

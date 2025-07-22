@@ -27,9 +27,9 @@ export default function DepartmentData(props) {
     prNumber: "",
     purchaseRequestAmount: 0,
     updatedAt: "",
-    chrisApproval: false,
-    jasonApproval: false,
-    tonyaApproval: false
+    admin1Approval: false,
+    admin2Approval: false,
+    admin3Approval: false
 
   })
   const handleSubmit = (i) => {
@@ -46,9 +46,9 @@ export default function DepartmentData(props) {
       prNumber: i.prNumber,
       purchaseRequestAmount: i.purchaseRequestAmount,
       updatedAt: i.updatedAt,
-      chrisApproval: i.chrisApproval,
-      jasonApproval: i.jasonApproval,
-      tonyaApproval: i.tonyaApproval
+      admin1Approval: i.admin1Approval,
+      admin2Approval: i.admin2Approval,
+      admin3Approval: i.admin3Approval
     })
     setTrigger(true)
   }

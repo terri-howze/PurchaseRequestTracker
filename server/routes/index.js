@@ -4,15 +4,15 @@ const router = express.Router();
 import storage from '../controller/fileStorage.js';
 import multer from 'multer';
 
-import { purchaseRequest, getDep20prs, searchBar, updatePurchaseRequest, deletePurchaseRequest, orderByDate } from '../controller/purchaserequest_controller.js'
+import { purchaseRequest, departmentPr, searchBar, updatePurchaseRequest, deletePurchaseRequest, orderByDate } from '../controller/purchaserequest_controller.js'
 
-const upload = multer({storage: storage})
+const upload = multer({ storage: storage })
 
 
-router.get('/PR/get20/', async (req, res) => {
+router.get('/PR/departmentPr/', async (req, res) => {
     try {
         console.log(req.query)
-        const twentydata = await getDep20prs(req)
+        const twentydata = await departmentPr(req)
         res.status(200).json(twentydata)
     } catch (err) {
         res.status(500).json(err)

@@ -37,17 +37,17 @@ const addPurchaseRequest = sequelize.define('purchaseRequest', {
   poNumber: {
     type: DataTypes.CHAR,
     allowNull: true
-  }, chrisApproval: {
+  }, admin1Approval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: 0
   },
-  jasonApproval: {
+  admin2Approval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: 0
   },
-  tonyaApproval: {
+  admin3Approval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: 0

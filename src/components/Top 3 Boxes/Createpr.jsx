@@ -13,7 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 
 
 export default function Createpr() {
-    //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
+  //initiating state variables for creating purchase request. These are saved as an object we submit is clicked and sent as post request.
   const [prNumber, setprNumber] = useState()
   const [department, setdepartment] = useState('0')
   const [file, setFile] = useState()
@@ -23,14 +23,14 @@ export default function Createpr() {
   const [date, setDate] = useState("")
   const divisionResults = useStateStore((state) => state.divisionResults)
   const createPrFalseMount = useStateStore((state) => state.flagFalse)
-//   const [chrisApproval, setChris] = useState(false)
-//   const [jasonApproval, setJason] = useState(false)
-//   const [tonyaApproval, setTonya] = useState(false)
+  //   const [admin1Approval, setadmin1] = useState(false)
+  //   const [admin2Approval, setadmin2] = useState(false)
+  //   const [admin3Approval, setadmin3] = useState(false)
   const config = {
     headers: {
-        'content-type': 'multipart/form-data'
+      'content-type': 'multipart/form-data'
     }
-}
+  }
 
   function handlefile(event) {
     setFile(event.target.files[0])
@@ -78,40 +78,40 @@ export default function Createpr() {
 
   return (
     <>
-    <div className='createpr_inner_box'>
-      <form onSubmit={handleSubmit}>
-        <label for="Department">Purchase Request</label>
-        <input type="text" onChange={onNewPR}></input>
-        
-        <br /><label>Department</label>
-        <Select
-          id="department-label"
-          defaultValue=''
-          value={department}
-          label="Department"
-          onChange={onNewDepartment}
-        >
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={50}>50</MenuItem>
-          <MenuItem value={51}>51</MenuItem>
-          <MenuItem value={52}>52</MenuItem>
-          <MenuItem value={53}>53</MenuItem>
-        </Select><br />
-        <label for="Department">Purchase Request Amount</label>
-        <input type="text" onChange={onNewPurchaseRequestAmount}></input>
-        <br /><label for="Department">Card Number</label>
-        <input type="text" onChange={onNewCardNumber}></input>
-        <br /><label>PR Document</label>
-        <input type='file' onChange={handlefile}></input><br />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            onChange={(newValue) => {
-              setDate(newValue)
-            }} />
-        </LocalizationProvider>
-      </form>
-      <button id='myform' type='submit' onClick={handleSubmit}>Submit</button>
-    </div>
+      <div className='createpr_inner_box'>
+        <form onSubmit={handleSubmit}>
+          <label for="Department">Purchase Request</label>
+          <input type="text" onChange={onNewPR}></input>
+
+          <br /><label>Department</label>
+          <Select
+            id="department-label"
+            defaultValue=''
+            value={department}
+            label="Department"
+            onChange={onNewDepartment}
+          >
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={50}>50</MenuItem>
+            <MenuItem value={51}>51</MenuItem>
+            <MenuItem value={52}>52</MenuItem>
+            <MenuItem value={53}>53</MenuItem>
+          </Select><br />
+          <label for="Department">Purchase Request Amount</label>
+          <input type="text" onChange={onNewPurchaseRequestAmount}></input>
+          <br /><label for="Department">Card Number</label>
+          <input type="text" onChange={onNewCardNumber}></input>
+          <br /><label>PR Document</label>
+          <input type='file' onChange={handlefile}></input><br />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              onChange={(newValue) => {
+                setDate(newValue)
+              }} />
+          </LocalizationProvider>
+        </form>
+        <button id='myform' type='submit' onClick={handleSubmit}>Submit</button>
+      </div>
     </>
   )
 }
