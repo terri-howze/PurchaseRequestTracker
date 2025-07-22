@@ -1,4 +1,3 @@
-import { trusted } from "mongoose";
 import { create, createStore } from "zustand";
 
 // type State = {

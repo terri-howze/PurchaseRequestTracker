@@ -53,6 +53,7 @@ const addPurchaseRequest = sequelize.define('purchaseRequest', {
     defaultValue: 0
   }
 }, {
+   tableName: 'purchaseRequest',
   freezeTableName: true
 })
 

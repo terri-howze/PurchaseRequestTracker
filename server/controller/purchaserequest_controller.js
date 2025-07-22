@@ -29,7 +29,7 @@ const purchaseRequest = async (req, res) => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-    await sequelize.sync();
+    await sequelize.sync({force: true});
     await addPurchaseRequest.create({
       prNumber: req.body.prNumber,
       dep_num: req.body.department,
@@ -55,25 +55,38 @@ const purchaseRequest = async (req, res) => {
 
 
 const departmentPr = async (req, res) => {
-  const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: 'mssql',
-    port: process.env.DB_PORT,
-    dialectOptions: {
-      options: {
-        requestTimeout: 300000,
-        encrypt: true,
-      },
+  console.log("made to controller")
+  // const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
+  //   host: process.env.DB_HOST,
+  //   dialect: 'postgres',
+  //   port: process.env.DB_PORT,
+  //   dialectOptions: {
+  //     options: {
+  //       requestTimeout: 300000,
+  //       encrypt: true,
+  //     },
 
+  //   }
+  
+
+  // });
+const sequelize = new Sequelize(process.env.DB_CONNECT, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false // Supabase needs this
     }
-
-  });
+  }
+});
+    console.log("sequelize set up")
   try {
     await sequelize.authenticate();
-    await sequelize.sync();
+    console.log("Authenticated")
+    await sequelize.sync({force: true});
     const results = await addPurchaseRequest.findAll({
       where: {
-        dep_num: req.query.data
+        dep_num: 20
       },
 
     })
