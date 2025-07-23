@@ -11,32 +11,32 @@ import purchaseOrderGenerator from "./purchaseOrdergenerator.js";
 
 const purchaseRequest = async (req, res) => {
   console.log("made to controller")
-const sequelize = new Sequelize("postgresql://postgres.sgwtlwzxzxjcubtjauzd:a2C2WlK6RzMDMcmUXjAW@aws-0-us-east-2.pooler.supabase.com:5432/postgres");
-    console.log("sequelize set up")
+  const sequelize = new Sequelize(process.env.DB_CONNECT);
+  console.log("sequelize set up")
 
   try {
-  await sequelize.sync(); // Avoid force: true
-  console.log("Synced successfully");
-} catch (err) {
-  console.error("Sync error:", err);
-}
+    await sequelize.sync(); // Avoid force: true
+    console.log("Synced successfully");
+  } catch (err) {
+    console.error("Sync error:", err);
+  }
 
-try {
-  await addPurchaseRequest.create({
-    prNumber: req.body.prNumber,
-    dep_num: req.body.department,
-    cardType: req.body.cardType,
-    cardNumber: req.body.cardNumber,
-    datePurchaseRequest: req.body.datePurchaseRequest,
-    purchaseRequestAmount: req.body.purchaseRequestAmount,
-    admin1Approval: false,
-    admin2Approval: false,
-    admin3Approval: false
-  });
-  console.log("Create successful");
-} catch (err) {
-  console.error("Create error:", err);
-}
+  try {
+    await addPurchaseRequest.create({
+      prNumber: req.body.prNumber,
+      dep_num: req.body.department,
+      cardType: req.body.cardType,
+      cardNumber: req.body.cardNumber,
+      datePurchaseRequest: req.body.datePurchaseRequest,
+      purchaseRequestAmount: req.body.purchaseRequestAmount,
+      admin1Approval: false,
+      admin2Approval: false,
+      admin3Approval: false
+    });
+    console.log("Create successful");
+  } catch (err) {
+    console.error("Create error:", err);
+  }
 
 
 
@@ -59,23 +59,23 @@ const departmentPr = async (req, res) => {
   //     },
 
   //   }
-  
+
 
   // });
-const sequelize = new Sequelize(process.env.DB_CONNECT, {
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false // Supabase needs this
+  const sequelize = new Sequelize(process.env.DB_CONNECT, {
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Supabase needs this
+      }
     }
-  }
-});
-    console.log("sequelize set up")
+  });
+  console.log("sequelize set up")
   try {
     await sequelize.authenticate();
     console.log("Authenticated")
-    await sequelize.sync({force: true});
+    await sequelize.sync({ force: true });
     const results = await addPurchaseRequest.findAll({
       where: {
         dep_num: 20
