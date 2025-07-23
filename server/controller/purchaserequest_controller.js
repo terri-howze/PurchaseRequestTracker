@@ -10,41 +10,33 @@ import purchaseOrderGenerator from "./purchaseOrdergenerator.js";
 
 
 const purchaseRequest = async (req, res) => {
-  console.log("made it to controller")
-
-  const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: 'mssql',
-    port: process.env.DB_PORT,
-    dialectOptions: {
-      options: {
-        requestTimeout: 300000,
-        encrypt: true,
-      },
-
-    }
-
-  });
+  console.log("made to controller")
+const sequelize = new Sequelize("postgresql://postgres.sgwtlwzxzxjcubtjauzd:a2C2WlK6RzMDMcmUXjAW@aws-0-us-east-2.pooler.supabase.com:5432/postgres");
+    console.log("sequelize set up")
 
   try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-    await sequelize.sync({force: true});
-    await addPurchaseRequest.create({
-      prNumber: req.body.prNumber,
-      dep_num: req.body.department,
-      cardType: req.body.cardType,
-      cardNumber: req.body.cardNumber,
-      datePurchaseRequest: req.body.datePurchaseRequest,
-      purchaseRequestAmount: req.body.purchaseRequestAmount,
-      admin1Approval: false,
-      admin2Approval: false,
-      admin3Approval: false
-    })
+  await sequelize.sync(); // Avoid force: true
+  console.log("Synced successfully");
+} catch (err) {
+  console.error("Sync error:", err);
+}
 
-  } catch (err) {
-    console.log(err)
-  }
+try {
+  await addPurchaseRequest.create({
+    prNumber: req.body.prNumber,
+    dep_num: req.body.department,
+    cardType: req.body.cardType,
+    cardNumber: req.body.cardNumber,
+    datePurchaseRequest: req.body.datePurchaseRequest,
+    purchaseRequestAmount: req.body.purchaseRequestAmount,
+    admin1Approval: false,
+    admin2Approval: false,
+    admin3Approval: false
+  });
+  console.log("Create successful");
+} catch (err) {
+  console.error("Create error:", err);
+}
 
 
 
@@ -101,7 +93,7 @@ const searchBar = async (req, res) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
-    port: 1433,
+    port: 5432,
     dialectOptions: {
       options: { "requestTimeout": 300000 }
     }
@@ -185,7 +177,7 @@ const deletePurchaseRequest = async (req, res) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
-    port: 1433,
+    port: 5432,
     dialectOptions: {
       options: { "requestTimeout": 300000 }
     }
@@ -211,7 +203,7 @@ const orderByDate = async (req) => {
   const sequelize = new Sequelize(process.env.DB, process.env.DB_UNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mssql',
-    port: 1433,
+    port: 5432,
     dialectOptions: {
       options: { "requestTimeout": 300000 }
     }
