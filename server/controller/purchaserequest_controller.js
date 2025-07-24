@@ -57,7 +57,7 @@ const departmentPr = async (req, res) => {
   //     },
 
   //   }
-  
+
 
   // });
 
